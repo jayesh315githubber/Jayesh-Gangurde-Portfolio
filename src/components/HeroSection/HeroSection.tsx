@@ -173,7 +173,7 @@ export const HeroSection = () => {
         <div className="w-64 h-64 rounded-full overflow-hidden shadow-lg">
           <img
             src="/Jayesh_Gangurde.jpg"
-            alt="Tushar Narayan Deomare"
+            alt="Jayesh Gangurde"
             className="w-full h-full object-cover"
           />
         </div>
