@@ -19,7 +19,8 @@ import * as THREE from 'three';
 // replace with your own imports, see the usage snippet for details
 import cardGLB from './card.glb';
 import lanyard from './lanyard.png';
-import profilePhoto from '/Jayesh_Gangurde.jpg';
+// Public assets should be referenced as string paths, not imported
+const profilePhoto = '/Jayesh_Gangurde.jpg';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
