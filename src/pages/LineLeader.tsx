@@ -7,19 +7,18 @@ import { useGSAPScrollRestoration } from "@/hooks/useGSAPScrollRestoration";
 import {
   ArrowLeft,
   Zap,
-  Globe,
-  BarChart3,
-  Settings,
-  Mail,
-  Key,
-  Webhook,
-  Brain,
+  Database,
   FileText,
   TrendingUp,
   Activity,
-  MessageSquare,
-  // Calendar,
   Cpu,
+  Webhook,
+  BarChart3,
+  Server,
+  Shield,
+  Clock,
+  Upload,
+  Users,
   ExternalLink,
 } from "lucide-react";
 import { Badge } from "@/components/lightswind/badge";
@@ -45,12 +44,7 @@ import {
 // Lazy load react-bits components for better performance
 const LightRays = lazy(() => import("@/components/reactBits/lightRays"));
 
-// Lazy load heavy components
-const Shield = lazy(() =>
-  import("lucide-react").then((mod) => ({ default: mod.Shield }))
-);
-
-const MarketJD = () => {
+const LineLeader = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useAppSelector((state) => state.theme.theme);
@@ -62,60 +56,42 @@ const MarketJD = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const techStackRef = useRef<HTMLDivElement>(null);
-  const integrationsRef = useRef<HTMLDivElement>(null);
+  const architectureRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const summaryRef = useRef<HTMLDivElement>(null);
 
-  // Technology logos with real CDN URLs, documentation links, and tooltips
+  // Technology logos with real CDN URLs
   const techLogos: LogoItem[] = useMemo(
     () => [
       {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-        alt: "Next.js",
-        title: "Next.js 14.2.10 - Click to visit documentation",
-        href: "https://nextjs.org/docs",
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        alt: "React",
+        title: "React 18 - Click to visit documentation",
+        href: "https://react.dev",
       },
       {
         src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
         alt: "TypeScript",
-        title: "TypeScript 5.1.6 - Click to visit documentation",
+        title: "TypeScript - Click to visit documentation",
         href: "https://www.typescriptlang.org/docs",
       },
       {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-        alt: "React",
-        title: "React 18.3.1 - Click to visit documentation",
-        href: "https://react.dev",
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+        alt: "Next.js",
+        title: "Next.js - Click to visit documentation",
+        href: "https://nextjs.org/docs",
       },
       {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg",
-        alt: "Prisma",
-        title: "Prisma 6.11.1 - Click to visit documentation",
-        href: "https://www.prisma.io/docs",
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+        alt: "MongoDB",
+        title: "MongoDB - Click to visit documentation",
+        href: "https://www.mongodb.com/docs",
       },
       {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
-        alt: "Redux Toolkit",
-        title: "Redux Toolkit + Persist - Click to visit documentation",
-        href: "https://redux-toolkit.js.org",
-      },
-      {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-        alt: "Tailwind CSS",
-        title: "Tailwind CSS 3.3.2 - Click to visit documentation",
-        href: "https://tailwindcss.com/docs",
-      },
-      {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-        alt: "MySQL",
-        title: "MySQL Database - Click to visit documentation",
-        href: "https://dev.mysql.com/doc",
-      },
-      {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chartjs/chartjs-original.svg",
-        alt: "Chart.js",
-        title: "Chart.js 4.3.3 - Click to visit documentation",
-        href: "https://www.chartjs.org/docs",
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+        alt: "AWS",
+        title: "AWS S3 & Lambda - Click to visit documentation",
+        href: "https://docs.aws.amazon.com",
       },
       {
         src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
@@ -123,203 +99,208 @@ const MarketJD = () => {
         title: "Node.js Runtime - Click to visit documentation",
         href: "https://nodejs.org/docs",
       },
-      {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg",
-        alt: "npm",
-        title: "npm Package Manager - Click to visit documentation",
-        href: "https://docs.npmjs.com",
-      },
+      // {
+      //   src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      //   alt: "Express.js",
+      //   title: "Express.js - Click to visit documentation",
+      //   href: "https://expressjs.com",
+      // },
+      // {
+      //   src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
+      //   alt: "Redis",
+      //   title: "Redis - Click to visit documentation",
+      //   href: "https://redis.io/docs",
+      // },
     ],
     []
   );
 
-  // Detailed integrations with descriptions
-  const integrations = [
+  // Work area breakdown for accordion
+  const workAreas = [
     {
-      category: "Analytics & SEO",
+      category: "Report Streaming Pipeline",
       items: [
         {
-          name: "Google Analytics Data API",
-          description: "Real-time analytics data integration",
+          name: "S3StreamingService",
+          description:
+            "Reusable service using @aws-sdk/lib-storage Upload with PassThrough streams to pipe CSV data directly to S3 in chunks with gzip compression",
         },
         {
-          name: "Google Search Console",
-          description: "Search performance and indexing data",
+          name: "ReportGenerationService",
+          description:
+            "Agenda.js-based job queue connected to MongoDB with configurable concurrency (default 10), 10-second polling interval, and 10-minute lock lifetime",
         },
         {
-          name: "Semrush API",
-          description: "SEO insights and keyword research",
+          name: "BillingReportAgingStreamingService",
+          description:
+            "MongoDB aggregation pipelines that compute center totals server-side, streaming person groups one at a time through Node.js Readable streams",
         },
         {
-          name: "DataForSEO API",
-          description: "Comprehensive SEO data aggregation",
+          name: "AgingReportStreamingCsvService",
+          description:
+            "Converts streaming aggregation output into CSV rows on-the-fly, piping directly to S3 instead of building the entire CSV in memory",
         },
         {
-          name: "Serp API",
-          description: "Search engine results page monitoring",
+          name: "MemoryMonitor",
+          description:
+            "Diagnostic utility tracking process.memoryUsage() at checkpoints during report generation, logging heap usage deltas and elapsed time",
         },
         {
-          name: "Google PageSpeed API",
-          description: "Performance metrics and optimization insights",
+          name: "ReportEmailService",
+          description:
+            "Sends email notifications with S3 download links when async reports complete, using HTML templates",
+        },
+      ],
+      icon: Upload,
+      color: "purple",
+    },
+    {
+      category: "Performance Optimization",
+      items: [
+        {
+          name: "switchGroup Event Loop Fix",
+          description:
+            "Refactored group switching operations touching 80+ collections with async yielding patterns to keep server responsive. 516 lines of test coverage added.",
+        },
+        {
+          name: "MongoDB 100MB Document Limit Fix",
+          description:
+            "Restructured aggregation pipelines using $unwind and $group stages to keep intermediate documents small during multi-org $lookup stages. 535 lines of test coverage.",
+        },
+        {
+          name: "getPeopleCountForGroup Rewrite",
+          description:
+            "Rewrote people count calculation (530+ lines) with batched queries and early exits, replacing multiple sequential queries.",
+        },
+        {
+          name: "Agenda Job Queue Tuning",
+          description:
+            "Configured concurrency to 10, high priority for report jobs, fixed defaultLockLimit to match maxConcurrency to prevent job starvation.",
         },
       ],
       icon: TrendingUp,
       color: "blue",
     },
     {
-      category: "Advertising & Marketing",
+      category: "Data Pipelines & Exports",
       items: [
         {
-          name: "Google Ads API",
-          description: "Campaign management and performance tracking",
+          name: "Subsidy Data Export",
+          description:
+            "Scheduled export that extracts subsidy data from MongoDB, formats it, and uploads to S3 with timezone-aware timestamps per organization.",
         },
         {
-          name: "Google Local Service Ads",
-          description: "Local advertising campaign integration",
+          name: "Billing Plan Data Export",
+          description:
+            "S3-backed export for billing plan data with cron scheduling, report name prefixing, and environment configuration.",
         },
         {
-          name: "Facebook Ads API",
-          description: "Social media advertising data",
+          name: "Custom Report Builder",
+          description:
+            "View/edit functionality for saved custom reports — users save report configurations (filters, columns, date ranges) and revisit them later.",
+        },
+        {
+          name: "Ledger Detail Report Rebuild",
+          description:
+            "913-line MongoDB aggregation pipeline performing all joins, filters, and grouping server-side with streaming to S3. Handles superadmin permissions and column selection.",
+        },
+      ],
+      icon: Database,
+      color: "green",
+    },
+    {
+      category: "Billing, Scheduling & UI",
+      items: [
+        {
+          name: "Invoice Display & Migration",
+          description:
+            "Fixed invoice display inconsistency, migrated from publication to Meteor.call for transaction tab data fetching with loading states and unit tests.",
+        },
+        {
+          name: "Credit Memo Metadata",
+          description:
+            "Implemented updatedAt metadata field for credit memos with org-timezone-aware timestamps and Open Credit Importer updates.",
+        },
+        {
+          name: "Calendar Optimization",
+          description:
+            "Removed unnecessary subscriptions from calendar page to reduce data transfer. Created optimized publication omitting unused fields from staff scheduling data.",
+        },
+        {
+          name: "Deep Link Session Handling",
+          description:
+            "Fixed login route authorization, session value handling, and authenticated report download redirects across multi-tenant sessions.",
+        },
+        {
+          name: "Data Importers",
+          description:
+            "Updated Family Importer lookup tables, relaxed phone validation (14+ format variants), built Grades Served Importer UI, and fixed Item Importer _id assignment.",
         },
       ],
       icon: Activity,
-      color: "purple",
-    },
-    {
-      category: "Communication & CRM",
-      items: [
-        { name: "CallRail", description: "Call tracking and analytics" },
-        { name: "Apexchat", description: "Live chat integration" },
-        {
-          name: "Salesforce x Litify API",
-          description: "CRM and case management integration",
-        },
-        { name: "MyCase API", description: "Legal practice management system" },
-        { name: "HubSpot API", description: "Marketing automation and CRM" },
-      ],
-      icon: MessageSquare,
-      color: "green",
-    },
-    {
-      category: "Data & Automation",
-      items: [
-        {
-          name: "OpenAI",
-          description: "AI-powered data evaluation and insights",
-        },
-        {
-          name: "APIFY Crawler",
-          description: "Web scraping and data extraction",
-        },
-        {
-          name: "Juvoleads Webhook",
-          description: "Lead generation webhook integration",
-        },
-        {
-          name: "Geo Grid API",
-          description: "Geographic data and mapping services",
-        },
-        { name: "Google Maps", description: "Location services and mapping" },
-        {
-          name: "Brand.dev API",
-          description: "Brand monitoring and reputation management",
-        },
-      ],
-      icon: Brain,
       color: "orange",
     },
   ];
 
+  // Key features for interactive grid
   const features = [
     {
-      title: "Production Record Sharing",
+      title: "Report Streaming Architecture",
       description:
-        "Secure email-based sharing system for production records with granular access control. Implemented role-based permissions ensuring users only see records they're authorized to view. Features include encrypted email delivery, audit trails, and expiration controls.",
-      icon: Mail,
+        "Replaced in-memory CSV generation with MongoDB aggregation pipelines, Node.js readable streams, and direct S3 uploads via @aws-sdk/lib-storage — eliminating server OOM crashes on large multi-org report exports with millions of invoice records.",
+      icon: Server,
+      color: "purple",
+    },
+    {
+      title: "Agenda.js Job Queue",
+      description:
+        "Built ReportGenerationService with configurable concurrency (default 10), 10-second polling interval, 10-minute lock lifetime. Supports multiple report handlers via a Map, tracks job status, and handles failures gracefully.",
+      icon: Clock,
       color: "blue",
     },
     {
-      title: "Advanced Authentication System",
+      title: "Ledger Detail Pipeline",
       description:
-        "Comprehensive auth solution using Next-Auth with OAuth2.0, JWT tokens, and session management. Includes role-based access control (RBAC), dynamic permissions, and view-level security. Supports multiple providers and custom authentication flows.",
-      icon: Shield,
+        "913-line MongoDB aggregation pipeline performing all joins ($lookup), filters, and grouping server-side. Handles superadmin permissions, cash offset filters, and column selection within the pipeline — streaming results directly to S3.",
+      icon: Database,
       color: "green",
     },
     {
-      title: "Drag & Drop Dashboard Builder",
+      title: "Event Loop Optimization",
       description:
-        "Interactive drag-and-drop interface built with @dnd-kit for custom report generation. Users can create personalized dashboards by arranging widgets, charts, and data visualizations. Supports real-time updates and persistent layouts.",
-      icon: Settings,
-      color: "purple",
-    },
-    {
-      title: "Unified Analytics Dashboard",
-      description:
-        "Comprehensive dashboard aggregating data from 10+ third-party APIs without performance degradation. Features real-time data synchronization, caching strategies, and optimized rendering using React Window for large datasets.",
-      icon: BarChart3,
+        "Refactored blocking operations across group switching (80+ collections), billing reports, and people count calculations with async yielding patterns — keeping the Node.js server responsive during heavy operations.",
+      icon: Zap,
       color: "orange",
     },
     {
-      title: "AI-Powered Data Evaluation",
+      title: "MongoDB 100MB Limit Fix",
       description:
-        "Intelligent automation using OpenAI for data analysis, pattern recognition, and insight generation. Processes large volumes of data to provide actionable recommendations and automated reporting.",
-      icon: Brain,
-      color: "pink",
+        "Restructured aggregation pipelines to prevent the 100MB single-document limit error during $lookup stages on multi-org queries using $unwind and $group stages. 535 lines of test coverage added.",
+      icon: Shield,
+      color: "red",
     },
     {
-      title: "Dynamic Visibility System",
+      title: "S3 Streaming Service",
       description:
-        "Multi-dimensional visibility feature displaying SEO, Directory, Local, AI, and Social metrics for any domain. Real-time data aggregation from multiple sources with customizable views and export capabilities.",
-      icon: Globe,
+        "Reusable service using @aws-sdk/lib-storage Upload with PassThrough streams to pipe CSV data directly to S3 in chunks with gzip compression and unique key generation per report/org/user.",
+      icon: Upload,
       color: "teal",
     },
     {
-      title: "Advanced Reporting Engine",
+      title: "Data Export Automation",
       description:
-        "Multiple report types with sharing functionality, PDF/Excel export, and scheduled delivery. Built with ExcelJS and html2pdf.js for professional document generation. Supports custom templates and branding.",
-      icon: FileText,
-      color: "yellow",
+        "Scheduled exports for subsidy and billing plan data from MongoDB to S3, with timezone-aware timestamps matching each organization's timezone and configurable cron schedules.",
+      icon: BarChart3,
+      color: "pink",
     },
     {
-      title: "Granular Permission System",
+      title: "Multi-Tenant Features",
       description:
-        "Dynamic role-based access control with field-level permissions. Supports custom roles, permission inheritance, and fine-grained access management. Integrated with Next-Auth for secure authorization.",
-      icon: Key,
-      color: "red",
+        "Deep link session handling, multisite selection menus, group propagation for new sites, white-labeled components respecting org-specific colors, and admin user workflow extensions.",
+      icon: Users,
+      color: "yellow",
     },
   ];
-
-  // const cronJobs = [
-  //   {
-  //     name: "Calls Cron",
-  //     description: "Automated call tracking and analytics processing",
-  //   },
-  //   {
-  //     name: "Contact Forms Cron",
-  //     description: "Form submission processing and lead management",
-  //   },
-  //   {
-  //     name: "Chats Cron",
-  //     description: "Chat conversation data synchronization",
-  //   },
-  //   {
-  //     name: "Off-Page SEO Cron",
-  //     description: "Backlink monitoring and off-page SEO metrics",
-  //   },
-  //   {
-  //     name: "Technical SEO Cron",
-  //     description: "Technical SEO audits and monitoring",
-  //   },
-  //   {
-  //     name: "Search Console Cron",
-  //     description: "Search performance data aggregation",
-  //   },
-  //   { name: "MyCase Cron", description: "Legal case data synchronization" },
-  //   {
-  //     name: "Facebook Leads Cron",
-  //     description: "Social media lead processing",
-  //   },
-  // ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -436,6 +417,7 @@ const MarketJD = () => {
                   { x: -40, y: 30, rotate: -15 },
                   { x: 0, y: 50, rotate: 0 },
                   { x: 40, y: 30, rotate: 15 },
+                  { x: -30, y: 40, rotate: -10 },
                 ];
                 const dir = directions[i % directions.length];
                 gsap.set(badge, {
@@ -488,151 +470,66 @@ const MarketJD = () => {
             }
           }
 
-          // ─── PHASE 2: Tech Stack — Icon spring + content lift ───
-          if (techStackRef.current) {
-            const techIcon =
-              techStackRef.current.querySelector(".section-icon");
-            const techTitle =
-              techStackRef.current.querySelector(".section-title");
-            const techSubtitle =
-              techStackRef.current.querySelector(".section-subtitle");
-            const techContent =
-              techStackRef.current.querySelector(".section-content");
+          // ─── Scroll-triggered section animation helper ───
+          const animateSection = (
+            ref: React.RefObject<HTMLDivElement | null>
+          ) => {
+            if (!ref.current) return;
+            const el = ref.current;
 
-            // Icon: Spring bounce
-            if (techIcon) {
-              gsap.set(techIcon, { scale: 0, rotation: -180 });
-              gsap.to(techIcon, {
+            const icon = el.querySelector(".section-icon");
+            const title = el.querySelector(".section-title");
+            const subtitle = el.querySelector(".section-subtitle");
+            const content = el.querySelector(".section-content");
+
+            if (icon) {
+              gsap.set(icon, { scale: 0, rotation: -180 });
+              gsap.to(icon, {
                 scale: 1,
                 rotation: 0,
                 duration: 1,
                 ease: "elastic.out(1, 0.4)",
                 scrollTrigger: {
-                  trigger: techStackRef.current,
+                  trigger: el,
                   start: "top 80%",
                   toggleActions: "play reverse play reverse",
                 },
               });
             }
 
-            // Title: Slide from left
-            if (techTitle) {
-              gsap.set(techTitle, { opacity: 0, x: -60, filter: "blur(8px)" });
-              gsap.to(techTitle, {
+            if (title) {
+              gsap.set(title, { opacity: 0, x: -60, filter: "blur(8px)" });
+              gsap.to(title, {
                 opacity: 1,
                 x: 0,
                 filter: "blur(0px)",
                 duration: 0.8,
                 ease: "power3.out",
                 scrollTrigger: {
-                  trigger: techStackRef.current,
+                  trigger: el,
                   start: "top 78%",
                   toggleActions: "play reverse play reverse",
                 },
               });
             }
 
-            // Subtitle: Fade up
-            if (techSubtitle) {
-              gsap.set(techSubtitle, { opacity: 0, y: 20 });
-              gsap.to(techSubtitle, {
+            if (subtitle) {
+              gsap.set(subtitle, { opacity: 0, y: 20 });
+              gsap.to(subtitle, {
                 opacity: 1,
                 y: 0,
                 duration: 0.6,
                 ease: "power2.out",
                 scrollTrigger: {
-                  trigger: techStackRef.current,
+                  trigger: el,
                   start: "top 76%",
                   toggleActions: "play reverse play reverse",
                 },
               });
             }
 
-            // Content: 3D perspective lift
-            if (techContent) {
-              gsap.set(techContent, {
-                opacity: 0,
-                y: 80,
-                scale: 0.9,
-                rotateX: 20,
-                transformPerspective: 1200,
-                transformOrigin: "center top",
-              });
-              gsap.to(techContent, {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                rotateX: 0,
-                duration: 1.2,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: techStackRef.current,
-                  start: "top 70%",
-                  toggleActions: "play reverse play reverse",
-                },
-              });
-            }
-          }
-
-          // ─── PHASE 3: Integrations — Dramatic card reveal ───
-          if (integrationsRef.current) {
-            const intIcon =
-              integrationsRef.current.querySelector(".section-icon");
-            const intTitle =
-              integrationsRef.current.querySelector(".section-title");
-            const intSubtitle =
-              integrationsRef.current.querySelector(".section-subtitle");
-            const intContent =
-              integrationsRef.current.querySelector(".section-content");
-
-            if (intIcon) {
-              gsap.set(intIcon, { scale: 0, rotation: -180 });
-              gsap.to(intIcon, {
-                scale: 1,
-                rotation: 0,
-                duration: 1,
-                ease: "elastic.out(1, 0.4)",
-                scrollTrigger: {
-                  trigger: integrationsRef.current,
-                  start: "top 80%",
-                  toggleActions: "play reverse play reverse",
-                },
-              });
-            }
-
-            if (intTitle) {
-              gsap.set(intTitle, { opacity: 0, x: -60, filter: "blur(8px)" });
-              gsap.to(intTitle, {
-                opacity: 1,
-                x: 0,
-                filter: "blur(0px)",
-                duration: 0.8,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: integrationsRef.current,
-                  start: "top 78%",
-                  toggleActions: "play reverse play reverse",
-                },
-              });
-            }
-
-            if (intSubtitle) {
-              gsap.set(intSubtitle, { opacity: 0, y: 20 });
-              gsap.to(intSubtitle, {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: integrationsRef.current,
-                  start: "top 76%",
-                  toggleActions: "play reverse play reverse",
-                },
-              });
-            }
-
-            if (intContent) {
-              gsap.set(intContent, {
+            if (content) {
+              gsap.set(content, {
                 opacity: 0,
                 y: 100,
                 scale: 0.85,
@@ -640,7 +537,7 @@ const MarketJD = () => {
                 transformPerspective: 1400,
                 transformOrigin: "center top",
               });
-              gsap.to(intContent, {
+              gsap.to(content, {
                 opacity: 1,
                 y: 0,
                 scale: 1,
@@ -648,96 +545,19 @@ const MarketJD = () => {
                 duration: 1.4,
                 ease: "power3.out",
                 scrollTrigger: {
-                  trigger: integrationsRef.current,
+                  trigger: el,
                   start: "top 70%",
                   toggleActions: "play reverse play reverse",
                 },
               });
             }
-          }
+          };
 
-          // ─── PHASE 4: Features — Grid reveal with stagger ───
-          if (featuresRef.current) {
-            const featIcon = featuresRef.current.querySelector(".section-icon");
-            const featTitle =
-              featuresRef.current.querySelector(".section-title");
-            const featSubtitle =
-              featuresRef.current.querySelector(".section-subtitle");
-            const featContent =
-              featuresRef.current.querySelector(".section-content");
+          animateSection(techStackRef);
+          animateSection(architectureRef);
+          animateSection(featuresRef);
 
-            if (featIcon) {
-              gsap.set(featIcon, { scale: 0, rotation: -180 });
-              gsap.to(featIcon, {
-                scale: 1,
-                rotation: 0,
-                duration: 1,
-                ease: "elastic.out(1, 0.4)",
-                scrollTrigger: {
-                  trigger: featuresRef.current,
-                  start: "top 80%",
-                  toggleActions: "play reverse play reverse",
-                },
-              });
-            }
-
-            if (featTitle) {
-              gsap.set(featTitle, { opacity: 0, x: -60, filter: "blur(8px)" });
-              gsap.to(featTitle, {
-                opacity: 1,
-                x: 0,
-                filter: "blur(0px)",
-                duration: 0.8,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: featuresRef.current,
-                  start: "top 78%",
-                  toggleActions: "play reverse play reverse",
-                },
-              });
-            }
-
-            if (featSubtitle) {
-              gsap.set(featSubtitle, { opacity: 0, y: 20 });
-              gsap.to(featSubtitle, {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: featuresRef.current,
-                  start: "top 76%",
-                  toggleActions: "play reverse play reverse",
-                },
-              });
-            }
-
-            if (featContent) {
-              gsap.set(featContent, {
-                opacity: 0,
-                y: 120,
-                scale: 0.8,
-                rotateX: 30,
-                transformPerspective: 1500,
-                transformOrigin: "center top",
-              });
-              gsap.to(featContent, {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                rotateX: 0,
-                duration: 1.5,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: featuresRef.current,
-                  start: "top 70%",
-                  toggleActions: "play reverse play reverse",
-                },
-              });
-            }
-          }
-
-          // ─── PHASE 5: Summary — Cinematic card entrance ───
+          // ─── Summary — Cinematic card entrance ───
           if (summaryRef.current) {
             gsap.set(summaryRef.current, {
               opacity: 0,
@@ -763,7 +583,6 @@ const MarketJD = () => {
               },
             });
 
-            // Summary cards stagger
             const summaryCards =
               summaryRef.current.querySelectorAll(".summary-card");
             if (summaryCards.length > 0) {
@@ -794,7 +613,6 @@ const MarketJD = () => {
       // MOBILE — Simplified but still engaging animations
       // ═══════════════════════════════════════════════════════════════════════
       mm.add("(max-width: 767px)", () => {
-        // Hero instant timeline
         const mobileTl = gsap.timeline();
 
         if (heroRef.current) {
@@ -828,7 +646,7 @@ const MarketJD = () => {
         // Scroll-triggered sections
         const sections = [
           techStackRef.current,
-          integrationsRef.current,
+          architectureRef.current,
           featuresRef.current,
           summaryRef.current,
         ].filter(Boolean);
@@ -857,7 +675,7 @@ const MarketJD = () => {
         const allSections = [
           heroRef.current,
           techStackRef.current,
-          integrationsRef.current,
+          architectureRef.current,
           featuresRef.current,
           summaryRef.current,
         ].filter(Boolean);
@@ -896,20 +714,20 @@ const MarketJD = () => {
     [features]
   );
 
-  // Prepare AccordionTabs items for integrations
+  // Prepare AccordionTabs items for work areas
   const accordionTabItems: AccordionTabItem[] = useMemo(
     () =>
-      integrations.map((integration) => {
-        const Icon = integration.icon;
+      workAreas.map((area) => {
+        const Icon = area.icon;
         return {
-          id: integration.category,
-          label: integration.category,
+          id: area.category,
+          label: area.category,
           icon: <Icon className="w-4 h-4" />,
-          color: integration.color,
-          badge: integration.items.length,
+          color: area.color,
+          badge: area.items.length,
           content: (
             <div className="space-y-3">
-              {integration.items.map((item, itemIdx) => (
+              {area.items.map((item, itemIdx) => (
                 <div
                   key={itemIdx}
                   style={{
@@ -931,7 +749,7 @@ const MarketJD = () => {
           ),
         };
       }),
-    [integrations]
+    [workAreas]
   );
 
   return (
@@ -1003,7 +821,7 @@ const MarketJD = () => {
           </button>
           <div className="flex items-center gap-3">
             <a
-              href="https://insightsjd.com/auth/signin/client"
+              href="https://my.discoverchampions.momentpath.com/login/legacy"
               target="_blank"
               rel="noopener noreferrer"
               className="group/live inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-full bg-emerald-500/90 text-white hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-105 transition-all duration-300 cursor-pointer backdrop-blur-md"
@@ -1017,9 +835,9 @@ const MarketJD = () => {
             </a>
             <ShareButton
               shareData={{
-                title: "MarketJD - SEO Insights Platform",
+                title: "LineLeader Manage - ChildCare SaaS Platform",
                 description:
-                  "Comprehensive SEO insights and analytics platform with 10+ third-party API integrations, advanced authentication, dynamic reporting, and AI-powered automation.",
+                  "Enterprise childcare SaaS platform with report streaming pipeline, MongoDB aggregation optimization, Agenda.js job queues, and multi-tenant architecture serving organizations with millions of records.",
                 url: getCurrentUrl(),
               }}
               variant="outline"
@@ -1036,13 +854,9 @@ const MarketJD = () => {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6">
             <div className="p-4 rounded-2xl bg-transparent flex items-center justify-center min-w-[120px] h-[120px] hero-logo">
               <img
-                src={
-                  isDarkMode
-                    ? "/logo-horizontal-dark.svg"
-                    : "/logo-horizontal-light.svg"
-                }
-                alt="MarketJD Logo"
-                className="h-16 w-auto object-contain"
+                src={isDarkMode ? "/ll_brandmark.svg" : "/ll_brandmark.svg"}
+                alt="LineLeader Logo"
+                className="h-36 w-auto object-contain"
               />
             </div>
             <div className="flex-1">
@@ -1050,14 +864,14 @@ const MarketJD = () => {
                 ref={titleRef}
                 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-2"
               >
-                MarketJD
+                LineLeader
               </h1>
               <p className="text-lg text-muted-foreground mb-2 hero-subtitle">
-                SEO Admin Portal • Enterprise Platform
+                ChildCare SaaS Platform • Enterprise Full Stack Engineering
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
                 <a
-                  href="https://insightsjd.com/auth/signin/client"
+                  href="https://my.discoverchampions.momentpath.com/login/legacy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group/badge hero-badge"
@@ -1076,7 +890,7 @@ const MarketJD = () => {
                   </Badge>
                 </a>
                 <Badge variant="info" size="lg" className="hero-badge">
-                  2+ Years
+                  Mar 2025 - Present
                 </Badge>
                 <Badge variant="default" size="lg" className="hero-badge">
                   Production
@@ -1085,17 +899,18 @@ const MarketJD = () => {
             </div>
           </div>
           <p className="text-lg text-muted-foreground max-w-4xl hero-description">
-            A comprehensive SEO insights and analytics platform with 10+
-            third-party API integrations, advanced authentication, dynamic
-            reporting, and AI-powered automation. Built with Next.js 14,
-            TypeScript, Prisma, and modern best practices for enterprise-scale
-            applications.
+            Architected core backend infrastructure for LineLeader Manage, a
+            childcare SaaS platform by ChildcareCRM. Built a report streaming
+            pipeline replacing in-memory CSV generation with MongoDB aggregation
+            pipelines, Node.js readable streams, and direct S3 uploads —
+            eliminating server OOM crashes. Optimized event loop blocking,
+            MongoDB document limits, and Agenda.js job queue concurrency for
+            organizations processing millions of invoice records.
           </p>
         </div>
 
-        {/* Technology Stack - LogoLoop with Futuristic Background */}
+        {/* Technology Stack - LogoLoop */}
         <div ref={techStackRef} className="mb-16 relative">
-          {/* Futuristic Background Effect */}
           {!isDarkMode && (
             <Suspense fallback={null}>
               <div className="absolute inset-0 -z-10 opacity-10 pointer-events-none overflow-hidden rounded-3xl">
@@ -1123,7 +938,7 @@ const MarketJD = () => {
               </h2>
             </div>
             <p className="text-muted-foreground section-subtitle">
-              Modern, scalable technologies powering the platform
+              Enterprise-grade technologies powering the platform
             </p>
           </div>
           <div className="relative py-8 px-2 rounded-2xl bg-transparent section-content">
@@ -1142,19 +957,20 @@ const MarketJD = () => {
           </div>
         </div>
 
-        {/* Third-Party Integrations - AccordionTabs */}
-        <div ref={integrationsRef} className="mb-16 relative">
+        {/* Architecture & Work Areas - AccordionTabs */}
+        <div ref={architectureRef} className="mb-16 relative">
           <div className="mb-6 section-header">
             <div className="mb-2 flex items-center gap-2">
               <div className="section-icon">
                 <Webhook className="w-8 h-8 text-primary" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold section-title">
-                Third-Party Integrations
+                Architecture & Work Areas
               </h2>
             </div>
             <p className="text-muted-foreground section-subtitle">
-              10+ seamless API integrations for comprehensive data insights
+              Core systems built across report streaming, performance
+              optimization, and data pipelines
             </p>
           </div>
           <div className="section-content">
@@ -1179,7 +995,7 @@ const MarketJD = () => {
               </h2>
             </div>
             <p className="text-muted-foreground section-subtitle">
-              Major development achievements and platform capabilities
+              Major engineering achievements and platform capabilities
             </p>
           </div>
           <div className="section-content">
@@ -1194,61 +1010,7 @@ const MarketJD = () => {
           </div>
         </div>
 
-        {/* Automation & Cron Jobs - Enhanced */}
-        {/* <div className="mb-16 relative">
-          <div className="mb-6">
-            <div className="mb-2 flex items-center gap-2">
-              <Calendar className="w-8 h-8 text-primary" />
-              <ScrollReveal
-                size="xl"
-                align="left"
-                variant="default"
-                containerClassName="inline-block"
-                animation="slideLeft"
-                delay={0.1}
-              >
-                Automated Background Jobs
-              </ScrollReveal>
-            </div>
-            <ScrollReveal
-              size="md"
-              align="left"
-              variant="muted"
-              animation="fadeUp"
-              delay={0.2}
-            >
-              8+ cron jobs handling data synchronization and processing
-            </ScrollReveal>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {cronJobs.map((job, idx) => (
-              <div
-                key={idx}
-                style={{
-                  animation: `fadeInUp 0.6s ease-out ${idx * 0.1}s both`,
-                }}
-                className="group relative p-5 rounded-xl border-2 border-border/50 bg-background/50 backdrop-blur-xl hover:border-primary/50 hover:bg-background/80 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg"
-              >
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
-                    <Calendar className="w-4 h-4 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-sm text-foreground mb-1 group-hover:text-primary transition-colors">
-                      {job.name}
-                    </h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      {job.description}
-                    </p>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary/0 group-hover:bg-primary/50 transition-all duration-300 rounded-b-xl" />
-              </div>
-            ))}
-          </div>
-        </div> */}
-
-        {/* Project Summary - Enhanced */}
+        {/* Project Summary */}
         <div ref={summaryRef} className="mb-12">
           <Card className="backdrop-blur-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/20 hover:border-primary/40 transition-all duration-500">
             <CardHeader className="pb-4">
@@ -1259,7 +1021,8 @@ const MarketJD = () => {
                 Project Summary
               </CardTitle>
               <CardDescription className="text-base">
-                Comprehensive enterprise platform for SEO management
+                Enterprise childcare SaaS platform — backend engineering &
+                architecture
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -1270,13 +1033,13 @@ const MarketJD = () => {
                     Project Name
                   </h3>
                   <p className="text-foreground font-medium text-lg mb-1">
-                    MarketJD
+                    LineLeader Manage
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    SEO Admin Portal
+                    ChildCare SaaS Platform
                   </p>
                   <p className="text-xs text-muted-foreground mt-2 italic">
-                    Previously: InsightsJD
+                    By ChildcareCRM
                   </p>
                 </div>
                 <div className="p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg summary-card">
@@ -1288,17 +1051,17 @@ const MarketJD = () => {
                     Duration
                   </h3>
                   <p className="text-foreground font-medium text-lg mb-1">
-                    2+ Years
+                    Mar 2025 - Present
                   </p>
                   <p className="text-sm text-muted-foreground">
                     Continuous development & maintenance
                   </p>
                   <div className="mt-3 flex gap-2">
                     <Badge variant="info" size="sm">
-                      Active Development
+                      48 Feature Tickets
                     </Badge>
                     <Badge variant="outline" size="sm">
-                      Ongoing
+                      29 Bug Fixes
                     </Badge>
                   </div>
                 </div>
@@ -1311,7 +1074,7 @@ const MarketJD = () => {
                     Status
                   </h3>
                   <a
-                    href="https://insightsjd.com/auth/signin/client"
+                    href="https://my.discoverchampions.momentpath.com/login/legacy"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group/status inline-block mb-3"
@@ -1333,7 +1096,7 @@ const MarketJD = () => {
                     Production environment
                   </p>
                   <p className="text-xs text-muted-foreground mt-2">
-                    Enterprise-grade platform
+                    Enterprise-grade ChildCare SaaS
                   </p>
                 </div>
               </div>
@@ -1345,4 +1108,4 @@ const MarketJD = () => {
   );
 };
 
-export default MarketJD;
+export default LineLeader;
