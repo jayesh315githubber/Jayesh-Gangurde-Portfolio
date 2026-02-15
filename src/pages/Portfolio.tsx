@@ -27,6 +27,7 @@ import {
   Wand2,
   Eye,
   MousePointerClick,
+  ExternalLink,
 } from "lucide-react";
 import { LogoLoop, type LogoItem } from "@/components/reactBits/logoLoop";
 import {
@@ -357,10 +358,14 @@ const Portfolio = () => {
 
           // ─── PHASE 2: Tech Stack — Icon spring + content lift ───
           if (techStackRef.current) {
-            const techIcon = techStackRef.current.querySelector(".section-icon");
-            const techTitle = techStackRef.current.querySelector(".section-title");
-            const techSubtitle = techStackRef.current.querySelector(".section-subtitle");
-            const techContent = techStackRef.current.querySelector(".section-content");
+            const techIcon =
+              techStackRef.current.querySelector(".section-icon");
+            const techTitle =
+              techStackRef.current.querySelector(".section-title");
+            const techSubtitle =
+              techStackRef.current.querySelector(".section-subtitle");
+            const techContent =
+              techStackRef.current.querySelector(".section-content");
 
             // Icon: Spring bounce
             if (techIcon) {
@@ -440,9 +445,12 @@ const Portfolio = () => {
           // ─── PHASE 3: Features — Grid reveal with stagger ───
           if (featuresRef.current) {
             const featIcon = featuresRef.current.querySelector(".section-icon");
-            const featTitle = featuresRef.current.querySelector(".section-title");
-            const featSubtitle = featuresRef.current.querySelector(".section-subtitle");
-            const featContent = featuresRef.current.querySelector(".section-content");
+            const featTitle =
+              featuresRef.current.querySelector(".section-title");
+            const featSubtitle =
+              featuresRef.current.querySelector(".section-subtitle");
+            const featContent =
+              featuresRef.current.querySelector(".section-content");
 
             if (featIcon) {
               gsap.set(featIcon, { scale: 0, rotation: -180 });
@@ -542,7 +550,8 @@ const Portfolio = () => {
             });
 
             // Summary cards stagger
-            const summaryCards = summaryRef.current.querySelectorAll(".summary-card");
+            const summaryCards =
+              summaryRef.current.querySelectorAll(".summary-card");
             if (summaryCards.length > 0) {
               gsap.set(summaryCards, {
                 opacity: 0,
@@ -585,17 +594,29 @@ const Portfolio = () => {
 
           if (titleRef.current) {
             gsap.set(titleRef.current, { opacity: 0, y: 30 });
-            mobileTl.to(titleRef.current, { opacity: 1, y: 0, duration: 0.5 }, 0.1);
+            mobileTl.to(
+              titleRef.current,
+              { opacity: 1, y: 0, duration: 0.5 },
+              0.1
+            );
           }
 
           if (badges.length > 0) {
             gsap.set(badges, { opacity: 0, scale: 0.8 });
-            mobileTl.to(badges, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.1 }, 0.3);
+            mobileTl.to(
+              badges,
+              { opacity: 1, scale: 1, duration: 0.4, stagger: 0.1 },
+              0.3
+            );
           }
         }
 
         // Scroll-triggered sections
-        const sections = [techStackRef.current, featuresRef.current, summaryRef.current].filter(Boolean);
+        const sections = [
+          techStackRef.current,
+          featuresRef.current,
+          summaryRef.current,
+        ].filter(Boolean);
         sections.forEach((section) => {
           if (section) {
             gsap.set(section, { opacity: 0, y: 50 });
@@ -618,7 +639,12 @@ const Portfolio = () => {
       // REDUCED MOTION — Instant visibility
       // ═══════════════════════════════════════════════════════════════════════
       mm.add("(prefers-reduced-motion: reduce)", () => {
-        const allSections = [heroRef.current, techStackRef.current, featuresRef.current, summaryRef.current].filter(Boolean);
+        const allSections = [
+          heroRef.current,
+          techStackRef.current,
+          featuresRef.current,
+          summaryRef.current,
+        ].filter(Boolean);
         allSections.forEach((section) => {
           if (section) {
             gsap.set(section, { opacity: 1, clearProps: "all" });
@@ -655,7 +681,10 @@ const Portfolio = () => {
   );
 
   return (
-    <div ref={pageRef} className="min-h-screen bg-transparent relative route-enter-content">
+    <div
+      ref={pageRef}
+      className="min-h-screen bg-transparent relative route-enter-content"
+    >
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -673,16 +702,21 @@ const Portfolio = () => {
         {/* Back Button and Share */}
         <div className="mb-8 flex items-center justify-between flex-wrap gap-3 sm:gap-4 route-enter-child">
           <button
-            onClick={(e) => {
+            onClick={async (e) => {
               e.preventDefault();
-              const scrollY = saveScrollPosition();
-              navigate("/", {
-                state: {
-                  scrollTo: "projects",
-                  scrollY,
-                  from: "home-to-project",
-                },
-              });
+              const splitUrl = window.location.href.split("#");
+              if (splitUrl?.includes("home")) {
+                const scrollY = saveScrollPosition();
+                navigate("/", {
+                  state: {
+                    scrollTo: "projects",
+                    scrollY,
+                    from: "home-to-project",
+                  },
+                });
+              } else {
+                navigate(-1);
+              }
             }}
             className="cursor-pointer flex items-center gap-2 text-foreground hover:text-primary transition-colors group touch-manipulation"
           >
@@ -692,19 +726,34 @@ const Portfolio = () => {
             />
             <span className="text-sm sm:text-base">Back</span>
           </button>
-          <ShareButton
-            shareData={{
-              title: "TechShowcase - Portfolio Website",
-              description:
-                "Modern, interactive portfolio website featuring smooth animations, AI-powered assistant, 3D carousel, and responsive design.",
-              url: getCurrentUrl(),
-            }}
-            variant="outline"
-            size="md"
-            showLabel={true}
-            position="bottom"
-            className="shrink-0 cursor-pointer"
-          />
+          <div className="flex items-center gap-3">
+            <a
+              href="https://jayesh-gangurde-portfolio.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/live inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-full bg-emerald-500/90 text-white hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-105 transition-all duration-300 cursor-pointer backdrop-blur-md"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+              </span>
+              Production
+              <ExternalLink className="w-3 h-3 opacity-70 group-hover/live:opacity-100 group-hover/live:translate-x-0.5 transition-all duration-200" />
+            </a>
+            <ShareButton
+              shareData={{
+                title: "TechShowcase - Portfolio Website",
+                description:
+                  "Modern, interactive portfolio website featuring smooth animations, AI-powered assistant, 3D carousel, and responsive design.",
+                url: getCurrentUrl(),
+              }}
+              variant="outline"
+              size="md"
+              showLabel={true}
+              position="bottom"
+              className="shrink-0 cursor-pointer"
+            />
+          </div>
         </div>
 
         {/* Hero Header */}
@@ -732,14 +781,33 @@ const Portfolio = () => {
                 Modern Interactive Portfolio • React + TypeScript
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
-                <Badge variant="success" size="lg" className="hero-badge">
-                  Live & Active
-                </Badge>
+                <a
+                  href="https://jayesh-gangurde-portfolio.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/badge hero-badge"
+                >
+                  <Badge
+                    variant="success"
+                    size="lg"
+                    className="cursor-pointer hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-105 transition-all duration-300"
+                  >
+                    <span className="relative flex h-2 w-2 mr-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                    </span>
+                    Live & Active
+                    <ExternalLink className="w-3 h-3 ml-1.5 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-200" />
+                  </Badge>
+                </a>
                 <Badge variant="info" size="lg" className="hero-badge">
                   2025 - Present
                 </Badge>
                 <Badge variant="default" size="lg" className="hero-badge">
                   Portfolio
+                </Badge>
+                <Badge variant="warning" size="lg" className="hero-badge">
+                  Personal Project
                 </Badge>
               </div>
             </div>
@@ -778,7 +846,9 @@ const Portfolio = () => {
               <div className="section-icon">
                 <Cpu className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold section-title">Technology Stack</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold section-title">
+                Technology Stack
+              </h2>
             </div>
             <p className="text-muted-foreground section-subtitle">
               Modern technologies powering this portfolio
@@ -807,7 +877,9 @@ const Portfolio = () => {
               <div className="section-icon">
                 <Zap className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold section-title">Key Features & Capabilities</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold section-title">
+                Key Features & Capabilities
+              </h2>
             </div>
             <p className="text-muted-foreground section-subtitle">
               Major features and development achievements
@@ -884,13 +956,25 @@ const Portfolio = () => {
                     />
                     Status
                   </h3>
-                  <Badge variant="success" size="lg" className="mb-3">
-                    <span className="relative flex h-2 w-2 mr-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                    </span>
-                    Live & Active
-                  </Badge>
+                  <a
+                    href="https://jayesh-gangurde-portfolio.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/status inline-block mb-3"
+                  >
+                    <Badge
+                      variant="success"
+                      size="lg"
+                      className="cursor-pointer hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-105 transition-all duration-300"
+                    >
+                      <span className="relative flex h-2 w-2 mr-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                      </span>
+                      Live & Active
+                      <ExternalLink className="w-3 h-3 ml-1.5 opacity-0 group-hover/status:opacity-100 transition-opacity duration-200" />
+                    </Badge>
+                  </a>
                   <p className="text-sm text-muted-foreground">
                     Production environment
                   </p>
