@@ -1191,7 +1191,7 @@ const HeroSectionComponent = () => {
             className="w-[200px] h-[200px] sm:w-[216px] sm:h-[216px] md:w-[232px] md:h-[232px] rounded-full overflow-hidden shadow-lg"
           >
             <img
-              src="/Jayesh_Gangurde.jpg"
+              src="/Jayesh_Gangurde.webp"
               alt="Jayesh Gangurde"
               className="w-full h-full object-cover"
               loading="eager"
