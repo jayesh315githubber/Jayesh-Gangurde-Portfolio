@@ -116,8 +116,7 @@ export const portfolioData: PortfolioData = {
       description:
         "Working on enterprise-level applications, focusing on scalable web solutions and advanced React development. Contributing to complex projects with emphasis on code quality, performance optimization, and best practices.",
       achievements: [
-        "Honored with Star Performer Award 2025",
-        "Selected in Tech Star Team of Thinkitive",
+        "Honored with Key Contributor Award 2025",
       ],
       technologies: [
         "Next.js",
@@ -135,10 +134,6 @@ export const portfolioData: PortfolioData = {
       period: "July 2024 - Jan 2025",
       description:
         "Developed and maintained full-stack web applications using modern JavaScript frameworks. Collaborated with cross-functional teams to deliver high-quality software solutions. Gained expertise in building responsive user interfaces and robust backend services.",
-      achievements: [
-        "Honored with Above and Beyond Performer Award 2024",
-        "Selected in Tech Star Team of Thinkitive",
-      ],
       technologies: [
         "Next.js",
         "React",
@@ -152,7 +147,7 @@ export const portfolioData: PortfolioData = {
     {
       title: "Software Engineer Trainee",
       company: "Thinkitive Technologies Private Limited",
-      period: "Jan 2024 - July 2024",
+      period: "Dec 2023 - July 2024",
       description:
         "Completed comprehensive training on MERN stack development. Successfully onboarded to live projects, learning industry best practices, version control, and collaborative development workflows. Built foundational skills in full-stack web development.",
       technologies: [
@@ -164,27 +159,6 @@ export const portfolioData: PortfolioData = {
         "Node.js",
         "Express.js",
         "MongoDB",
-      ],
-    },
-    {
-      title: "IT Trainee",
-      company: "eHealthSystem Healthcare Ltd.",
-      period: "Aug 2023 - Oct 2023",
-      description:
-        "Worked with a small team of 15 employees on healthcare application development. Converted Figma designs into static web pages using HTML, CSS, and JavaScript. Developed React.js applications with static data for pitching healthcare solutions to Government authorities. Created wireframes for various healthcare applications.",
-      technologies: ["HTML", "CSS", "JavaScript", "React.js", "Figma"],
-    },
-    {
-      title: "Program Analyst Trainee - Intern",
-      company: "Cognizant",
-      period: "Nov 2022 - Jun 2023",
-      description:
-        "Learned software testing fundamentals including Agile methodology, W model, and V model. Gained hands-on experience in smoke testing and regression testing. Developed understanding of software development lifecycle and quality assurance processes.",
-      technologies: [
-        "Software Testing",
-        "Agile Methodology",
-        "Smoke Testing",
-        "Regression Testing",
       ],
     },
     // {
