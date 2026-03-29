@@ -74,7 +74,8 @@ export default defineConfig(({ mode }) => ({
       baseUrl: getBaseUrl(),
       routes: [
         { path: "/", priority: 1.0, changefreq: "weekly" },
-        { path: "/marketjd", priority: 0.8, changefreq: "monthly" },
+        { path: "/everbetter", priority: 0.8, changefreq: "monthly" },
+        { path: "/noustalk", priority: 0.8, changefreq: "monthly" },
         { path: "/portfolio", priority: 0.8, changefreq: "monthly" },
       ],
     }),
@@ -275,11 +276,11 @@ export default defineConfig(({ mode }) => ({
             return "vendor";
           }
           // Route-based code splitting
-          if (id.includes("/pages/MarketJD")) {
-            return "marketjd-page";
+          if (id.includes("/pages/EverBetter")) {
+            return "everbetter-page";
           }
-          if (id.includes("/pages/LineLeader")) {
-            return "lineleader-page";
+          if (id.includes("/pages/NousTalk")) {
+            return "noustalk-page";
           }
           if (id.includes("/pages/Portfolio")) {
             return "portfolio-page";

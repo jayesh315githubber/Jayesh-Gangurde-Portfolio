@@ -74,8 +74,8 @@ const SECTION_DEFS: Record<string, Omit<TreeNode, "children" | "level">> = {
 };
 
 const SUB_PAGES: TreeNode[] = [
-  { id: "marketjd",    label: "MarketJD",     type: "subpage", icon: BarChart3,   color: "rose",   href: "/marketjd",    isRoute: true, children: [], level: 2, description: "SEO insights platform" },
-  { id: "lineleader",  label: "LineLeader",   type: "subpage", icon: Server,      color: "violet", href: "/lineleader",  isRoute: true, children: [], level: 2, description: "ChildCare SaaS platform" },
+  { id: "noustalk",    label: "NousTalk",     type: "subpage", icon: BarChart3,   color: "rose",   href: "/noustalk",    isRoute: true, children: [], level: 2, description: "Online therapy platform" },
+  { id: "everbetter", label: "EverBetter",   type: "subpage", icon: Server,      color: "violet", href: "/everbetter",  isRoute: true, children: [], level: 2, description: "Healthcare SaaS platform" },
   { id: "portfolio",   label: "TechShowcase", type: "subpage", icon: Code2,       color: "rose",   href: "/portfolio",   isRoute: true, children: [], level: 2, description: "Portfolio website" },
 ];
 

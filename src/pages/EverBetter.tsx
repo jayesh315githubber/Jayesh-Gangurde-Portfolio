@@ -6,20 +6,20 @@ import { useGSAPRouteAnimation } from "@/hooks/useGSAPRouteAnimation";
 import { useGSAPScrollRestoration } from "@/hooks/useGSAPScrollRestoration";
 import {
   ArrowLeft,
-  Zap,
-  Database,
-  FileText,
-  TrendingUp,
-  Activity,
   Cpu,
-  Webhook,
-  BarChart3,
-  Server,
-  Shield,
-  Clock,
-  Upload,
+  Layers,
+  Zap,
+  FileText,
   Users,
-  ExternalLink,
+  Mic,
+  CreditCard,
+  Video,
+  Building2,
+  BarChart3,
+  TrendingUp,
+  Server,
+  Database,
+  Cloud,
 } from "lucide-react";
 import { Badge } from "@/components/lightswind/badge";
 import { ShareButton } from "@/components/Share";
@@ -32,19 +32,16 @@ import {
   CardTitle,
 } from "@/components/lightswind/card";
 import { LogoLoop, type LogoItem } from "@/components/reactBits/logoLoop";
-import {
-  InteractiveGrid,
-  type InteractiveGridItem,
-} from "@/components/reactBits/interactiveGrid";
-import {
-  AccordionTabs,
-  type AccordionTabItem,
-} from "@/components/reactBits/accordionTabs";
+import { InteractiveGrid, type InteractiveGridItem } from "@/components/reactBits/interactiveGrid";
+import { AccordionTabs, type AccordionTabItem } from "@/components/reactBits/accordionTabs";
 
 // Lazy load react-bits components for better performance
 const LightRays = lazy(() => import("@/components/reactBits/lightRays"));
 
-const LineLeader = () => {
+// Lazy load heavy components
+const Shield = lazy(() => import("lucide-react").then((mod) => ({ default: mod.Shield })));
+
+const EverBetter = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useAppSelector((state) => state.theme.theme);
@@ -60,244 +57,218 @@ const LineLeader = () => {
   const featuresRef = useRef<HTMLDivElement>(null);
   const summaryRef = useRef<HTMLDivElement>(null);
 
-  // Technology logos with real CDN URLs
+  // Technology logos — devicon CDN
   const techLogos: LogoItem[] = useMemo(
     () => [
       {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-        alt: "React",
-        title: "React 18 - Click to visit documentation",
-        href: "https://react.dev",
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+        alt: "Next.js",
+        title: "Next.js 15 — Click to visit documentation",
+        href: "https://nextjs.org/docs",
       },
       {
         src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
         alt: "TypeScript",
-        title: "TypeScript - Click to visit documentation",
+        title: "TypeScript 5 — Click to visit documentation",
         href: "https://www.typescriptlang.org/docs",
       },
       {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-        alt: "Next.js",
-        title: "Next.js - Click to visit documentation",
-        href: "https://nextjs.org/docs",
-      },
-      {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-        alt: "MongoDB",
-        title: "MongoDB - Click to visit documentation",
-        href: "https://www.mongodb.com/docs",
-      },
-      {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
-        alt: "AWS",
-        title: "AWS S3 & Lambda - Click to visit documentation",
-        href: "https://docs.aws.amazon.com",
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        alt: "React",
+        title: "React 19 — Click to visit documentation",
+        href: "https://react.dev",
       },
       {
         src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
         alt: "Node.js",
-        title: "Node.js Runtime - Click to visit documentation",
+        title: "Node.js Runtime — Click to visit documentation",
         href: "https://nodejs.org/docs",
       },
-      // {
-      //   src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-      //   alt: "Express.js",
-      //   title: "Express.js - Click to visit documentation",
-      //   href: "https://expressjs.com",
-      // },
-      // {
-      //   src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
-      //   alt: "Redis",
-      //   title: "Redis - Click to visit documentation",
-      //   href: "https://redis.io/docs",
-      // },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+        alt: "MongoDB",
+        title: "MongoDB — Click to visit documentation",
+        href: "https://www.mongodb.com/docs",
+      },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+        alt: "Express.js",
+        title: "Express.js — Click to visit documentation",
+        href: "https://expressjs.com",
+      },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+        alt: "Docker",
+        title: "Docker — Click to visit documentation",
+        href: "https://docs.docker.com",
+      },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+        alt: "Google Cloud",
+        title: "Google Cloud Platform — Click to visit documentation",
+        href: "https://cloud.google.com/docs",
+      },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
+        alt: "Redis",
+        title: "Redis — Click to visit documentation",
+        href: "https://redis.io/docs",
+      },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+        alt: "Kubernetes",
+        title: "Kubernetes / GKE — Click to visit documentation",
+        href: "https://kubernetes.io/docs",
+      },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
+        alt: "Terraform",
+        title: "Terraform IaC — Click to visit documentation",
+        href: "https://developer.hashicorp.com/terraform/docs",
+      },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
+        alt: "Nginx",
+        title: "Nginx API Gateway — Click to visit documentation",
+        href: "https://nginx.org/en/docs",
+      },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
+        alt: "Redux Toolkit",
+        title: "Redux Toolkit — Click to visit documentation",
+        href: "https://redux-toolkit.js.org",
+      },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/antdesign/antdesign-original.svg",
+        alt: "Ant Design",
+        title: "Ant Design UI — Click to visit documentation",
+        href: "https://ant.design/docs/react/introduce",
+      },
+      {
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+        alt: "AWS",
+        title: "AWS (S3, Transcribe) — Click to visit documentation",
+        href: "https://docs.aws.amazon.com",
+      },
     ],
     []
   );
 
-  // Work area breakdown for accordion
-  const workAreas = [
+  // Architecture & services breakdown
+  const architecture = [
     {
-      category: "Report Streaming Pipeline",
+      category: "Frontend & UI",
       items: [
-        {
-          name: "S3StreamingService",
-          description:
-            "Reusable service using @aws-sdk/lib-storage Upload with PassThrough streams to pipe CSV data directly to S3 in chunks with gzip compression",
-        },
-        {
-          name: "ReportGenerationService",
-          description:
-            "Agenda.js-based job queue connected to MongoDB with configurable concurrency (default 10), 10-second polling interval, and 10-minute lock lifetime",
-        },
-        {
-          name: "BillingReportAgingStreamingService",
-          description:
-            "MongoDB aggregation pipelines that compute center totals server-side, streaming person groups one at a time through Node.js Readable streams",
-        },
-        {
-          name: "AgingReportStreamingCsvService",
-          description:
-            "Converts streaming aggregation output into CSV rows on-the-fly, piping directly to S3 instead of building the entire CSV in memory",
-        },
-        {
-          name: "MemoryMonitor",
-          description:
-            "Diagnostic utility tracking process.memoryUsage() at checkpoints during report generation, logging heap usage deltas and elapsed time",
-        },
-        {
-          name: "ReportEmailService",
-          description:
-            "Sends email notifications with S3 download links when async reports complete, using HTML templates",
-        },
-      ],
-      icon: Upload,
-      color: "purple",
-    },
-    {
-      category: "Performance Optimization",
-      items: [
-        {
-          name: "switchGroup Event Loop Fix",
-          description:
-            "Refactored group switching operations touching 80+ collections with async yielding patterns to keep server responsive. 516 lines of test coverage added.",
-        },
-        {
-          name: "MongoDB 100MB Document Limit Fix",
-          description:
-            "Restructured aggregation pipelines using $unwind and $group stages to keep intermediate documents small during multi-org $lookup stages. 535 lines of test coverage.",
-        },
-        {
-          name: "getPeopleCountForGroup Rewrite",
-          description:
-            "Rewrote people count calculation (530+ lines) with batched queries and early exits, replacing multiple sequential queries.",
-        },
-        {
-          name: "Agenda Job Queue Tuning",
-          description:
-            "Configured concurrency to 10, high priority for report jobs, fixed defaultLockLimit to match maxConcurrency to prevent job starvation.",
-        },
+        { name: "Next.js 15 + React 19", description: "App Router, Server Components, streaming SSR" },
+        { name: "TanStack Query", description: "Server state management and data fetching" },
+        { name: "Redux Toolkit", description: "Client-side global state management" },
+        { name: "Ant Design", description: "Enterprise-grade UI component library" },
+        { name: "D3.js", description: "Custom data visualizations and interactive charts" },
+        { name: "Centrifugo WebSocket", description: "Real-time updates via WebSocket pub/sub" },
+        { name: "AWS Transcribe", description: "AI-powered speech-to-text for clinical notes" },
+        { name: "WebRTC", description: "Peer-to-peer video & audio consultations" },
       ],
       icon: TrendingUp,
       color: "blue",
     },
     {
-      category: "Data Pipelines & Exports",
+      category: "Backend Microservices",
       items: [
-        {
-          name: "Subsidy Data Export",
-          description:
-            "Scheduled export that extracts subsidy data from MongoDB, formats it, and uploads to S3 with timezone-aware timestamps per organization.",
-        },
-        {
-          name: "Billing Plan Data Export",
-          description:
-            "S3-backed export for billing plan data with cron scheduling, report name prefixing, and environment configuration.",
-        },
-        {
-          name: "Custom Report Builder",
-          description:
-            "View/edit functionality for saved custom reports — users save report configurations (filters, columns, date ranges) and revisit them later.",
-        },
-        {
-          name: "Ledger Detail Report Rebuild",
-          description:
-            "913-line MongoDB aggregation pipeline performing all joins, filters, and grouping server-side with streaming to S3. Handles superadmin permissions and column selection.",
-        },
+        { name: "17 Node.js / Express.js Services", description: "Each service owns a bounded domain context" },
+        { name: "NATS JetStream Broker", description: "Async messaging, event streaming, exactly-once delivery" },
+        { name: "index-service Gateway", description: "Single entry point routing all 645 API routes" },
+        { name: "mongodb-service", description: "Centralised DB access layer with 134 collections" },
+        { name: "auth-service", description: "Auth0 integration, JWT validation, M2M token issuance" },
+        { name: "appointment-service", description: "Scheduling, slots, availability management" },
+        { name: "billing-service", description: "Stripe invoicing, insurance claims, payment plans" },
+        { name: "notification-service", description: "Email, SMS, and in-app push notifications" },
       ],
-      icon: Database,
-      color: "green",
-    },
-    {
-      category: "Billing, Scheduling & UI",
-      items: [
-        {
-          name: "Invoice Display & Migration",
-          description:
-            "Fixed invoice display inconsistency, migrated from publication to Meteor.call for transaction tab data fetching with loading states and unit tests.",
-        },
-        {
-          name: "Credit Memo Metadata",
-          description:
-            "Implemented updatedAt metadata field for credit memos with org-timezone-aware timestamps and Open Credit Importer updates.",
-        },
-        {
-          name: "Calendar Optimization",
-          description:
-            "Removed unnecessary subscriptions from calendar page to reduce data transfer. Created optimized publication omitting unused fields from staff scheduling data.",
-        },
-        {
-          name: "Deep Link Session Handling",
-          description:
-            "Fixed login route authorization, session value handling, and authenticated report download redirects across multi-tenant sessions.",
-        },
-        {
-          name: "Data Importers",
-          description:
-            "Updated Family Importer lookup tables, relaxed phone validation (14+ format variants), built Grades Served Importer UI, and fixed Item Importer _id assignment.",
-        },
-      ],
-      icon: Activity,
-      color: "orange",
-    },
-  ];
-
-  // Key features for interactive grid
-  const features = [
-    {
-      title: "Report Streaming Architecture",
-      description:
-        "Replaced in-memory CSV generation with MongoDB aggregation pipelines, Node.js readable streams, and direct S3 uploads via @aws-sdk/lib-storage — eliminating server OOM crashes on large multi-org report exports with millions of invoice records.",
       icon: Server,
       color: "purple",
     },
     {
-      title: "Agenda.js Job Queue",
-      description:
-        "Built ReportGenerationService with configurable concurrency (default 10), 10-second polling interval, 10-minute lock lifetime. Supports multiple report handlers via a Map, tracks job status, and handles failures gracefully.",
-      icon: Clock,
-      color: "blue",
-    },
-    {
-      title: "Ledger Detail Pipeline",
-      description:
-        "913-line MongoDB aggregation pipeline performing all joins ($lookup), filters, and grouping server-side. Handles superadmin permissions, cash offset filters, and column selection within the pipeline — streaming results directly to S3.",
+      category: "Data & Security",
+      items: [
+        { name: "Auth0 — 13 RBAC Roles", description: "SuperAdmin, Admin, Doctor, Nurse, Patient, Receptionist and more" },
+        { name: "JWT Dual-Layer Validation", description: "Auth0 RS256 tokens + custom M2M inter-service tokens" },
+        { name: "646 Route-Permission Entries", description: "Fine-grained per-route access control matrix" },
+        { name: "MongoDB — 134 Collections", description: "Document model optimised for healthcare data isolation" },
+        { name: "Redis Caching", description: "Session store, rate-limiting, and hot-data caching" },
+        { name: "AWS S3", description: "Secure media storage for clinical documents and images" },
+      ],
       icon: Database,
       color: "green",
     },
     {
-      title: "Event Loop Optimization",
+      category: "DevOps & Infrastructure",
+      items: [
+        { name: "GCP / GKE", description: "Google Kubernetes Engine for container orchestration" },
+        { name: "Terraform IaC", description: "Declarative infrastructure provisioning and state management" },
+        { name: "ArgoCD GitOps", description: "Continuous deployment via Git-driven reconciliation" },
+        { name: "Docker Multi-Stage Builds", description: "Optimised images with minimal production footprint" },
+        { name: "SonarQube + Trivy", description: "Static code analysis and container vulnerability scanning" },
+        { name: "Nginx API Gateway", description: "Load balancing, SSL termination, and reverse proxy" },
+      ],
+      icon: Cloud,
+      color: "orange",
+    },
+  ];
+
+  const features = [
+    {
+      title: "Patient Management",
       description:
-        "Refactored blocking operations across group switching (80+ collections), billing reports, and people count calculations with async yielding patterns — keeping the Node.js server responsive during heavy operations.",
-      icon: Zap,
+        "Comprehensive multi-tenant patient records with appointment scheduling, medical history, demographics, and consent management. Fully isolated per clinic with role-based data visibility.",
+      icon: Users,
+      color: "blue",
+    },
+    {
+      title: "Clinical Documentation",
+      description:
+        "AI-powered clinical notes using AWS Transcribe for real-time speech-to-text. Supports SOAP notes, prescription generation, and structured data capture with physician review workflows.",
+      icon: Mic,
+      color: "green",
+    },
+    {
+      title: "Billing & Payments",
+      description:
+        "End-to-end billing powered by Stripe — invoicing, insurance claims, co-pay collection, and payment plans. Supports multi-payer workflows with automated reconciliation.",
+      icon: CreditCard,
+      color: "purple",
+    },
+    {
+      title: "Real-time Communication",
+      description:
+        "WebRTC peer-to-peer video/audio consultations with Centrifugo WebSocket for real-time chat, presence indicators, and live notification delivery across all connected clients.",
+      icon: Video,
       color: "orange",
     },
     {
-      title: "MongoDB 100MB Limit Fix",
+      title: "Multi-tenant Architecture",
       description:
-        "Restructured aggregation pipelines to prevent the 100MB single-document limit error during $lookup stages on multi-org queries using $unwind and $group stages. 535 lines of test coverage added.",
+        "Each clinic operates in a fully isolated tenant context with separate data boundaries, custom branding, and independent configuration — all within a shared infrastructure.",
+      icon: Building2,
+      color: "teal",
+    },
+    {
+      title: "Role-Based Access Control",
+      description:
+        "Auth0-powered RBAC with 13 distinct roles and 646 route-permission entries. Every API route is protected by a fine-grained permission matrix validated at the gateway level.",
       icon: Shield,
       color: "red",
     },
     {
-      title: "S3 Streaming Service",
+      title: "Microservices Backend",
       description:
-        "Reusable service using @aws-sdk/lib-storage Upload with PassThrough streams to pipe CSV data directly to S3 in chunks with gzip compression and unique key generation per report/org/user.",
-      icon: Upload,
-      color: "teal",
-    },
-    {
-      title: "Data Export Automation",
-      description:
-        "Scheduled exports for subsidy and billing plan data from MongoDB to S3, with timezone-aware timestamps matching each organization's timezone and configurable cron schedules.",
-      icon: BarChart3,
+        "17 independently deployable Node.js/Express.js services communicating asynchronously via NATS JetStream. Each service owns its domain with a single mongodb-service gateway for DB access.",
+      icon: Layers,
       color: "pink",
     },
     {
-      title: "Multi-Tenant Features",
+      title: "Analytics & Reporting",
       description:
-        "Deep link session handling, multisite selection menus, group propagation for new sites, white-labeled components respecting org-specific colors, and admin user workflow extensions.",
-      icon: Users,
+        "D3.js-powered dashboards for revenue analytics, patient flow, appointment utilisation, and clinical outcomes. Supports custom date ranges, export to PDF/Excel, and scheduled report delivery.",
+      icon: BarChart3,
       color: "yellow",
     },
   ];
@@ -334,7 +305,6 @@ const LineLeader = () => {
             const badges = heroSection.querySelectorAll(".hero-badge");
             const description = heroSection.querySelector(".hero-description");
 
-            // Logo: 3D flip with glow pulse
             if (logo) {
               gsap.set(logo, {
                 opacity: 0,
@@ -359,7 +329,6 @@ const LineLeader = () => {
               );
             }
 
-            // Title: SplitText chars with 3D wave
             if (titleRef.current) {
               const titleSplit = new SplitText(titleRef.current, {
                 type: "chars",
@@ -390,7 +359,6 @@ const LineLeader = () => {
               );
             }
 
-            // Subtitle: Slide from right with blur
             if (subtitle) {
               gsap.set(subtitle, {
                 opacity: 0,
@@ -410,14 +378,12 @@ const LineLeader = () => {
               );
             }
 
-            // Badges: Elastic cascade from different directions
             if (badges.length > 0) {
               badges.forEach((badge, i) => {
                 const directions = [
                   { x: -40, y: 30, rotate: -15 },
                   { x: 0, y: 50, rotate: 0 },
                   { x: 40, y: 30, rotate: 15 },
-                  { x: -30, y: 40, rotate: -10 },
                 ];
                 const dir = directions[i % directions.length];
                 gsap.set(badge, {
@@ -444,7 +410,6 @@ const LineLeader = () => {
               );
             }
 
-            // Description: Word-by-word reveal with SplitText
             if (description) {
               const descSplit = new SplitText(description, {
                 type: "words",
@@ -470,66 +435,139 @@ const LineLeader = () => {
             }
           }
 
-          // ─── Scroll-triggered section animation helper ───
-          const animateSection = (
-            ref: React.RefObject<HTMLDivElement | null>
-          ) => {
-            if (!ref.current) return;
-            const el = ref.current;
+          // ─── PHASE 2: Tech Stack — Icon spring + content lift ───
+          if (techStackRef.current) {
+            const techIcon = techStackRef.current.querySelector(".section-icon");
+            const techTitle = techStackRef.current.querySelector(".section-title");
+            const techSubtitle = techStackRef.current.querySelector(".section-subtitle");
+            const techContent = techStackRef.current.querySelector(".section-content");
 
-            const icon = el.querySelector(".section-icon");
-            const title = el.querySelector(".section-title");
-            const subtitle = el.querySelector(".section-subtitle");
-            const content = el.querySelector(".section-content");
-
-            if (icon) {
-              gsap.set(icon, { scale: 0, rotation: -180 });
-              gsap.to(icon, {
+            if (techIcon) {
+              gsap.set(techIcon, { scale: 0, rotation: -180 });
+              gsap.to(techIcon, {
                 scale: 1,
                 rotation: 0,
                 duration: 1,
                 ease: "elastic.out(1, 0.4)",
                 scrollTrigger: {
-                  trigger: el,
+                  trigger: techStackRef.current,
                   start: "top 80%",
                   toggleActions: "play reverse play reverse",
                 },
               });
             }
 
-            if (title) {
-              gsap.set(title, { opacity: 0, x: -60, filter: "blur(8px)" });
-              gsap.to(title, {
+            if (techTitle) {
+              gsap.set(techTitle, { opacity: 0, x: -60, filter: "blur(8px)" });
+              gsap.to(techTitle, {
                 opacity: 1,
                 x: 0,
                 filter: "blur(0px)",
                 duration: 0.8,
                 ease: "power3.out",
                 scrollTrigger: {
-                  trigger: el,
+                  trigger: techStackRef.current,
                   start: "top 78%",
                   toggleActions: "play reverse play reverse",
                 },
               });
             }
 
-            if (subtitle) {
-              gsap.set(subtitle, { opacity: 0, y: 20 });
-              gsap.to(subtitle, {
+            if (techSubtitle) {
+              gsap.set(techSubtitle, { opacity: 0, y: 20 });
+              gsap.to(techSubtitle, {
                 opacity: 1,
                 y: 0,
                 duration: 0.6,
                 ease: "power2.out",
                 scrollTrigger: {
-                  trigger: el,
+                  trigger: techStackRef.current,
                   start: "top 76%",
                   toggleActions: "play reverse play reverse",
                 },
               });
             }
 
-            if (content) {
-              gsap.set(content, {
+            if (techContent) {
+              gsap.set(techContent, {
+                opacity: 0,
+                y: 80,
+                scale: 0.9,
+                rotateX: 20,
+                transformPerspective: 1200,
+                transformOrigin: "center top",
+              });
+              gsap.to(techContent, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                rotateX: 0,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: techStackRef.current,
+                  start: "top 70%",
+                  toggleActions: "play reverse play reverse",
+                },
+              });
+            }
+          }
+
+          // ─── PHASE 3: Architecture — Dramatic card reveal ───
+          if (architectureRef.current) {
+            const archIcon = architectureRef.current.querySelector(".section-icon");
+            const archTitle = architectureRef.current.querySelector(".section-title");
+            const archSubtitle = architectureRef.current.querySelector(".section-subtitle");
+            const archContent = architectureRef.current.querySelector(".section-content");
+
+            if (archIcon) {
+              gsap.set(archIcon, { scale: 0, rotation: -180 });
+              gsap.to(archIcon, {
+                scale: 1,
+                rotation: 0,
+                duration: 1,
+                ease: "elastic.out(1, 0.4)",
+                scrollTrigger: {
+                  trigger: architectureRef.current,
+                  start: "top 80%",
+                  toggleActions: "play reverse play reverse",
+                },
+              });
+            }
+
+            if (archTitle) {
+              gsap.set(archTitle, { opacity: 0, x: -60, filter: "blur(8px)" });
+              gsap.to(archTitle, {
+                opacity: 1,
+                x: 0,
+                filter: "blur(0px)",
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: architectureRef.current,
+                  start: "top 78%",
+                  toggleActions: "play reverse play reverse",
+                },
+              });
+            }
+
+            if (archSubtitle) {
+              gsap.set(archSubtitle, { opacity: 0, y: 20 });
+              gsap.to(archSubtitle, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: architectureRef.current,
+                  start: "top 76%",
+                  toggleActions: "play reverse play reverse",
+                },
+              });
+            }
+
+            if (archContent) {
+              gsap.set(archContent, {
                 opacity: 0,
                 y: 100,
                 scale: 0.85,
@@ -537,7 +575,7 @@ const LineLeader = () => {
                 transformPerspective: 1400,
                 transformOrigin: "center top",
               });
-              gsap.to(content, {
+              gsap.to(archContent, {
                 opacity: 1,
                 y: 0,
                 scale: 1,
@@ -545,19 +583,93 @@ const LineLeader = () => {
                 duration: 1.4,
                 ease: "power3.out",
                 scrollTrigger: {
-                  trigger: el,
+                  trigger: architectureRef.current,
                   start: "top 70%",
                   toggleActions: "play reverse play reverse",
                 },
               });
             }
-          };
+          }
 
-          animateSection(techStackRef);
-          animateSection(architectureRef);
-          animateSection(featuresRef);
+          // ─── PHASE 4: Features — Grid reveal with stagger ───
+          if (featuresRef.current) {
+            const featIcon = featuresRef.current.querySelector(".section-icon");
+            const featTitle = featuresRef.current.querySelector(".section-title");
+            const featSubtitle = featuresRef.current.querySelector(".section-subtitle");
+            const featContent = featuresRef.current.querySelector(".section-content");
 
-          // ─── Summary — Cinematic card entrance ───
+            if (featIcon) {
+              gsap.set(featIcon, { scale: 0, rotation: -180 });
+              gsap.to(featIcon, {
+                scale: 1,
+                rotation: 0,
+                duration: 1,
+                ease: "elastic.out(1, 0.4)",
+                scrollTrigger: {
+                  trigger: featuresRef.current,
+                  start: "top 80%",
+                  toggleActions: "play reverse play reverse",
+                },
+              });
+            }
+
+            if (featTitle) {
+              gsap.set(featTitle, { opacity: 0, x: -60, filter: "blur(8px)" });
+              gsap.to(featTitle, {
+                opacity: 1,
+                x: 0,
+                filter: "blur(0px)",
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: featuresRef.current,
+                  start: "top 78%",
+                  toggleActions: "play reverse play reverse",
+                },
+              });
+            }
+
+            if (featSubtitle) {
+              gsap.set(featSubtitle, { opacity: 0, y: 20 });
+              gsap.to(featSubtitle, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: featuresRef.current,
+                  start: "top 76%",
+                  toggleActions: "play reverse play reverse",
+                },
+              });
+            }
+
+            if (featContent) {
+              gsap.set(featContent, {
+                opacity: 0,
+                y: 120,
+                scale: 0.8,
+                rotateX: 30,
+                transformPerspective: 1500,
+                transformOrigin: "center top",
+              });
+              gsap.to(featContent, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                rotateX: 0,
+                duration: 1.5,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: featuresRef.current,
+                  start: "top 70%",
+                  toggleActions: "play reverse play reverse",
+                },
+              });
+            }
+          }
+
+          // ─── PHASE 5: Summary — Cinematic card entrance ───
           if (summaryRef.current) {
             gsap.set(summaryRef.current, {
               opacity: 0,
@@ -583,8 +695,7 @@ const LineLeader = () => {
               },
             });
 
-            const summaryCards =
-              summaryRef.current.querySelectorAll(".summary-card");
+            const summaryCards = summaryRef.current.querySelectorAll(".summary-card");
             if (summaryCards.length > 0) {
               gsap.set(summaryCards, {
                 opacity: 0,
@@ -626,30 +737,16 @@ const LineLeader = () => {
 
           if (titleRef.current) {
             gsap.set(titleRef.current, { opacity: 0, y: 30 });
-            mobileTl.to(
-              titleRef.current,
-              { opacity: 1, y: 0, duration: 0.5 },
-              0.1
-            );
+            mobileTl.to(titleRef.current, { opacity: 1, y: 0, duration: 0.5 }, 0.1);
           }
 
           if (badges.length > 0) {
             gsap.set(badges, { opacity: 0, scale: 0.8 });
-            mobileTl.to(
-              badges,
-              { opacity: 1, scale: 1, duration: 0.4, stagger: 0.1 },
-              0.3
-            );
+            mobileTl.to(badges, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.1 }, 0.3);
           }
         }
 
-        // Scroll-triggered sections
-        const sections = [
-          techStackRef.current,
-          architectureRef.current,
-          featuresRef.current,
-          summaryRef.current,
-        ].filter(Boolean);
+        const sections = [techStackRef.current, architectureRef.current, featuresRef.current, summaryRef.current].filter(Boolean);
         sections.forEach((section) => {
           if (section) {
             gsap.set(section, { opacity: 0, y: 50 });
@@ -672,13 +769,7 @@ const LineLeader = () => {
       // REDUCED MOTION — Instant visibility
       // ═══════════════════════════════════════════════════════════════════════
       mm.add("(prefers-reduced-motion: reduce)", () => {
-        const allSections = [
-          heroRef.current,
-          techStackRef.current,
-          architectureRef.current,
-          featuresRef.current,
-          summaryRef.current,
-        ].filter(Boolean);
+        const allSections = [heroRef.current, techStackRef.current, architectureRef.current, featuresRef.current, summaryRef.current].filter(Boolean);
         allSections.forEach((section) => {
           if (section) {
             gsap.set(section, { opacity: 1, clearProps: "all" });
@@ -714,26 +805,24 @@ const LineLeader = () => {
     [features]
   );
 
-  // Prepare AccordionTabs items for work areas
+  // Prepare AccordionTabs items for architecture
   const accordionTabItems: AccordionTabItem[] = useMemo(
     () =>
-      workAreas.map((area) => {
-        const Icon = area.icon;
+      architecture.map((arch) => {
+        const Icon = arch.icon;
         return {
-          id: area.category,
-          label: area.category,
+          id: arch.category,
+          label: arch.category,
           icon: <Icon className="w-4 h-4" />,
-          color: area.color,
-          badge: area.items.length,
+          color: arch.color,
+          badge: arch.items.length,
           content: (
             <div className="space-y-3">
-              {area.items.map((item, itemIdx) => (
+              {arch.items.map((item, itemIdx) => (
                 <div
                   key={itemIdx}
                   style={{
-                    animation: `slideInLeft 0.4s ease-out ${
-                      itemIdx * 0.05
-                    }s both`,
+                    animation: `slideInLeft 0.4s ease-out ${itemIdx * 0.05}s both`,
                   }}
                   className="p-4 rounded-xl bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 hover:bg-background/80 transition-all duration-300 group"
                 >
@@ -749,15 +838,44 @@ const LineLeader = () => {
           ),
         };
       }),
-    [workAreas]
+    [architecture]
   );
 
   return (
-    <div
-      ref={pageRef}
-      className="min-h-screen bg-transparent relative route-enter-content"
-    >
-      {/* Keyframe animations (slideInLeft, etc.) moved to App.css — avoids re-injecting <style> on every render */}
+    <div ref={pageRef} className="min-h-screen bg-transparent relative route-enter-content">
+      <style>{`
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s ease-out both;
+        }
+      `}</style>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-8 md:py-12">
         {/* Back Button and Share */}
@@ -765,19 +883,14 @@ const LineLeader = () => {
           <button
             onClick={(e) => {
               e.preventDefault();
-              const splitUrl = window.location.href.split("#");
-              if (splitUrl?.includes("home")) {
-                const scrollY = saveScrollPosition();
-                navigate("/", {
-                  state: {
-                    scrollTo: "projects",
-                    scrollY,
-                    from: "home-to-project",
-                  },
-                });
-              } else {
-                navigate(-1);
-              }
+              const scrollY = saveScrollPosition();
+              navigate("/", {
+                state: {
+                  scrollTo: "projects",
+                  scrollY,
+                  from: "home-to-project",
+                },
+              });
             }}
             className="cursor-pointer flex items-center gap-2 text-foreground hover:text-primary transition-colors group touch-manipulation"
           >
@@ -787,34 +900,19 @@ const LineLeader = () => {
             />
             <span className="text-sm sm:text-base">Back</span>
           </button>
-          <div className="flex items-center gap-3">
-            <a
-              href="https://my.discoverchampions.momentpath.com/login/legacy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group/live inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-full bg-emerald-500/90 text-white hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-105 transition-all duration-300 cursor-pointer backdrop-blur-md"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-              </span>
-              Production
-              <ExternalLink className="w-3 h-3 opacity-70 group-hover/live:opacity-100 group-hover/live:translate-x-0.5 transition-all duration-200" />
-            </a>
-            <ShareButton
-              shareData={{
-                title: "LineLeader Manage - ChildCare SaaS Platform",
-                description:
-                  "Enterprise childcare SaaS platform with report streaming pipeline, MongoDB aggregation optimization, Agenda.js job queues, and multi-tenant architecture serving organizations with millions of records.",
-                url: getCurrentUrl(),
-              }}
-              variant="outline"
-              size="md"
-              showLabel={true}
-              position="bottom"
-              className="shrink-0 cursor-pointer"
-            />
-          </div>
+          <ShareButton
+            shareData={{
+              title: "EverBetter - Healthcare SaaS Platform",
+              description:
+                "Multi-tenant healthcare SaaS built with Next.js 15, React 19, and 17 Node.js/Express.js microservices communicating via NATS JetStream.",
+              url: getCurrentUrl(),
+            }}
+            variant="outline"
+            size="md"
+            showLabel={true}
+            position="bottom"
+            className="shrink-0 cursor-pointer"
+          />
         </div>
 
         {/* Hero Header */}
@@ -822,9 +920,9 @@ const LineLeader = () => {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6">
             <div className="p-4 rounded-2xl bg-transparent flex items-center justify-center min-w-[120px] h-[120px] hero-logo">
               <img
-                src={isDarkMode ? "/ll_brandmark.svg" : "/ll_brandmark.svg"}
-                alt="LineLeader Logo"
-                className="h-36 w-auto object-contain"
+                src="/everbetter-logo.svg"
+                alt="EverBetter Logo"
+                className="h-16 w-auto object-contain"
               />
             </div>
             <div className="flex-1">
@@ -832,33 +930,17 @@ const LineLeader = () => {
                 ref={titleRef}
                 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-2"
               >
-                LineLeader
+                EverBetter
               </h1>
               <p className="text-lg text-muted-foreground mb-2 hero-subtitle">
-                ChildCare SaaS Platform • Enterprise Full Stack Engineering
+                Healthcare SaaS Platform • Multi-tenant
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
-                <a
-                  href="https://my.discoverchampions.momentpath.com/login/legacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/badge hero-badge"
-                >
-                  <Badge
-                    variant="success"
-                    size="lg"
-                    className="cursor-pointer hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-105 transition-all duration-300"
-                  >
-                    <span className="relative flex h-2 w-2 mr-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                    </span>
-                    Live & Active
-                    <ExternalLink className="w-3 h-3 ml-1.5 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-200" />
-                  </Badge>
-                </a>
+                <Badge variant="success" size="lg" className="hero-badge">
+                  Live & Active
+                </Badge>
                 <Badge variant="info" size="lg" className="hero-badge">
-                  Mar 2025 - Present
+                  2+ Years
                 </Badge>
                 <Badge variant="default" size="lg" className="hero-badge">
                   Production
@@ -867,13 +949,10 @@ const LineLeader = () => {
             </div>
           </div>
           <p className="text-lg text-muted-foreground max-w-4xl hero-description">
-            Architected core backend infrastructure for LineLeader Manage, a
-            childcare SaaS platform by ChildcareCRM. Built a report streaming
-            pipeline replacing in-memory CSV generation with MongoDB aggregation
-            pipelines, Node.js readable streams, and direct S3 uploads —
-            eliminating server OOM crashes. Optimized event loop blocking,
-            MongoDB document limits, and Agenda.js job queue concurrency for
-            organizations processing millions of invoice records.
+            Multi-tenant healthcare SaaS platform built with Next.js 15, React 19, and 17 Node.js/Express.js
+            microservices communicating via NATS JetStream. Features Auth0 RBAC with 13 roles, WebRTC video
+            consultations, AWS Transcribe clinical documentation, Stripe billing, and a full GCP/GKE deployment
+            pipeline managed with Terraform and ArgoCD.
           </p>
         </div>
 
@@ -901,12 +980,10 @@ const LineLeader = () => {
               <div className="section-icon">
                 <Cpu className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold section-title">
-                Technology Stack
-              </h2>
+              <h2 className="text-2xl sm:text-3xl font-bold section-title">Technology Stack</h2>
             </div>
             <p className="text-muted-foreground section-subtitle">
-              Enterprise-grade technologies powering the platform
+              Modern, scalable technologies powering the platform
             </p>
           </div>
           <div className="relative py-8 px-2 rounded-2xl bg-transparent section-content">
@@ -925,20 +1002,17 @@ const LineLeader = () => {
           </div>
         </div>
 
-        {/* Architecture & Work Areas - AccordionTabs */}
+        {/* Architecture & Services - AccordionTabs */}
         <div ref={architectureRef} className="mb-16 relative">
           <div className="mb-6 section-header">
             <div className="mb-2 flex items-center gap-2">
               <div className="section-icon">
-                <Webhook className="w-8 h-8 text-primary" />
+                <Layers className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold section-title">
-                Architecture & Work Areas
-              </h2>
+              <h2 className="text-2xl sm:text-3xl font-bold section-title">Architecture & Services</h2>
             </div>
             <p className="text-muted-foreground section-subtitle">
-              Core systems built across report streaming, performance
-              optimization, and data pipelines
+              17 microservices, NATS JetStream messaging, and enterprise-grade security
             </p>
           </div>
           <div className="section-content">
@@ -958,12 +1032,10 @@ const LineLeader = () => {
               <div className="section-icon">
                 <Zap className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold section-title">
-                Key Features & Capabilities
-              </h2>
+              <h2 className="text-2xl sm:text-3xl font-bold section-title">Key Features & Capabilities</h2>
             </div>
             <p className="text-muted-foreground section-subtitle">
-              Major engineering achievements and platform capabilities
+              Major development achievements and platform capabilities
             </p>
           </div>
           <div className="section-content">
@@ -989,8 +1061,7 @@ const LineLeader = () => {
                 Project Summary
               </CardTitle>
               <CardDescription className="text-base">
-                Enterprise childcare SaaS platform — backend engineering &
-                architecture
+                Enterprise healthcare SaaS platform with microservices architecture
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -1000,72 +1071,38 @@ const LineLeader = () => {
                     <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                     Project Name
                   </h3>
-                  <p className="text-foreground font-medium text-lg mb-1">
-                    LineLeader Manage
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    ChildCare SaaS Platform
-                  </p>
+                  <p className="text-foreground font-medium text-lg mb-1">EverBetter</p>
+                  <p className="text-sm text-muted-foreground">Healthcare SaaS Platform</p>
                   <p className="text-xs text-muted-foreground mt-2 italic">
-                    By ChildcareCRM
+                    17 microservices · 134 DB collections
                   </p>
                 </div>
                 <div className="p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg summary-card">
                   <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <div
-                      className="w-2 h-2 rounded-full bg-primary animate-pulse"
-                      style={{ animationDelay: "0.2s" }}
-                    />
+                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.2s" }} />
                     Duration
                   </h3>
-                  <p className="text-foreground font-medium text-lg mb-1">
-                    Mar 2025 - Present
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Continuous development & maintenance
-                  </p>
+                  <p className="text-foreground font-medium text-lg mb-1">2+ Years</p>
+                  <p className="text-sm text-muted-foreground">Dec 2023 – Present</p>
                   <div className="mt-3 flex gap-2">
-                    <Badge variant="info" size="sm">
-                      48 Feature Tickets
-                    </Badge>
-                    <Badge variant="outline" size="sm">
-                      29 Bug Fixes
-                    </Badge>
+                    <Badge variant="info" size="sm">Active Development</Badge>
+                    <Badge variant="outline" size="sm">Ongoing</Badge>
                   </div>
                 </div>
                 <div className="p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg summary-card">
                   <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <div
-                      className="w-2 h-2 rounded-full bg-primary animate-pulse"
-                      style={{ animationDelay: "0.4s" }}
-                    />
+                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.4s" }} />
                     Status
                   </h3>
-                  <a
-                    href="https://my.discoverchampions.momentpath.com/login/legacy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/status inline-block mb-3"
-                  >
-                    <Badge
-                      variant="success"
-                      size="lg"
-                      className="cursor-pointer hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-105 transition-all duration-300"
-                    >
-                      <span className="relative flex h-2 w-2 mr-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                      </span>
-                      Live & Active
-                      <ExternalLink className="w-3 h-3 ml-1.5 opacity-0 group-hover/status:opacity-100 transition-opacity duration-200" />
-                    </Badge>
-                  </a>
-                  <p className="text-sm text-muted-foreground">
-                    Production environment
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-2">
-                    Enterprise-grade ChildCare SaaS
-                  </p>
+                  <Badge variant="success" size="lg" className="mb-3">
+                    <span className="relative flex h-2 w-2 mr-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                    </span>
+                    Live & Active
+                  </Badge>
+                  <p className="text-sm text-muted-foreground">Production environment</p>
+                  <p className="text-xs text-muted-foreground mt-2">Multi-tenant · GCP / GKE</p>
                 </div>
               </div>
             </CardContent>
@@ -1076,4 +1113,4 @@ const LineLeader = () => {
   );
 };
 
-export default LineLeader;
+export default EverBetter;

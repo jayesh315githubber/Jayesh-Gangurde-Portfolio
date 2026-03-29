@@ -11,46 +11,18 @@ const AchievementsSectionComponent = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const [achievements] = useState<ThreeDCarouselItem[]>([
     {
-      id: "2025-1",
-      image: "/2025-image-2.webp",
-      title: "Star Performer Award Ceremony 2025",
+      id: "key-award",
+      image: "/key-contributor-award.png",
+      title: "Key Contributor Award 2025",
       description:
-        "Receiving the prestigious 'Star Performer of the Year' award at the award ceremony, recognizing exceptional performance and outstanding contributions as Software Engineer 2. This momentous occasion celebrates dedication, excellence, and the significant impact made throughout 2025.",
+        "Honored with the prestigious 'Key Contributor' award trophy at Thinkitive's Emerging 11 Years celebration in 2025, recognizing an instrumental force behind Thinkitive Inc.'s achievements through vision, determination, and steadfast contributions.",
     },
     {
-      id: "2025-2",
-      image: "/2025-image-3.webp",
-      title: "Thinkitive Star Performance Trophy 2025",
+      id: "key-certificate",
+      image: "/key-contributor-certificate.jpg",
+      title: "Key Contributor Certificate 2025",
       description:
-        "Honored with the golden 'Star Performance' trophy from Thinkitive for 2025, awarded in recognition of exceptional achievements as Software Engineer 2. This prestigious award symbolizes outstanding dedication, innovation, and excellence that has significantly contributed to the company's success.",
-    },
-    {
-      id: "2025-3",
-      image: "/2025-image-5.webp",
-      title: "Star Performer of the Year Certificate 2025",
-      description:
-        "Certificate of recognition as 'Star Performer of the Year 2025' from Thinkitive Inc., presented in recognition of extraordinary dedication, unmatched excellence, and unwavering passion as Software Engineer 2. This award acknowledges the exceptional contributions that have shaped Thinkitive Inc.'s success in 2025, coinciding with their Emerging 11 Years anniversary celebration.",
-    },
-    {
-      id: "1",
-      image: "/image-1.webp",
-      title: "Above & Beyond Award Ceremony",
-      description:
-        "Receiving the prestigious 'Above & Beyond' award from Thinkitive, recognizing exceptional dedication and outstanding contributions to the company's success.",
-    },
-    {
-      id: "2",
-      image: "/image-2.webp",
-      title: "Thinkitive Above & Beyond Award 2024",
-      description:
-        "Honored with the 'Above & Beyond of the Year 2024' trophy, celebrating relentless effort and selfless dedication in driving innovation and excellence.",
-    },
-    {
-      id: "3",
-      image: "/image-3.webp",
-      title: "Recognition Certificate",
-      description:
-        "Certificate of recognition for transforming challenges into opportunities and playing a pivotal role in driving Thinkitive Inc. to new heights during their Glorious 10 Years celebration.",
+        "Certificate proudly presented to Jayesh Gangurde as 'Key Contributor' by Thinkitive Inc. — recognized for being an instrumental force behind Thinkitive Inc.'s achievements in 2025. Vision, determination, and steadfast contributions have been vital to their success and progress.",
     },
   ]);
 

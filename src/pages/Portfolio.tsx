@@ -176,7 +176,7 @@ const Portfolio = () => {
     {
       title: "Project Detail Pages",
       description:
-        "Dedicated routes for detailed project showcases with comprehensive information, tech stacks, features, and integrations. Similar structure to MarketJD page.",
+        "Dedicated routes for detailed project showcases with comprehensive information, tech stacks, features, and integrations.",
       icon: FileText,
       color: "violet",
     },

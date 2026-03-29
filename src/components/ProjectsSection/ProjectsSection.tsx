@@ -33,13 +33,13 @@ const SUBTITLE_CLASSES = "text-lg font-bold text-muted-foreground";
 
 // Logo path mapping - pre-computed for performance
 const LOGO_PATHS = {
-  MarketJD: {
-    dark: "/logo-horizontal-dark.svg",
-    light: "/logo-horizontal-light.svg",
+  EverBetter: {
+    dark: "/everbetter-logo.svg",
+    light: "/everbetter-logo.svg",
   },
-  LineLeader: {
-    dark: "/ll_brandmark.svg",
-    light: "/ll_brandmark.svg",
+  NousTalk: {
+    dark: "/noustalk-logo.png",
+    light: "/noustalk-logo.png",
   },
   TechShowcase: {
     dark: "/techshowcase-logo-dark.svg",
@@ -51,45 +51,47 @@ const LOGO_PATHS = {
 const PROJECTS_DATA = [
   {
     id: 1,
-    title: "MarketJD",
+    title: "NousTalk",
     subtitle:
-      "Comprehensive insights platform with 10+ third-party API integrations, advanced authentication, dynamic reporting, and AI-powered automation. Built with modern tech stack.",
-    date: "2024 - Present",
-    route: "/marketjd",
+      "Secure online therapy and practice management platform connecting therapists and clients via encrypted live audio/video sessions. Built React frontend with WebRTC, D3.js charts, appointment scheduling, Redux state management, and Stripe payments.",
+    date: "2023 - 2024",
+    route: "/noustalk",
     technologies: [
-      "Next.js",
-      "React",
+      "ReactJS",
       "TypeScript",
-      "Prisma",
-      "Next-Auth",
-      "Redux Toolkit",
+      "Material UI",
       "Ant Design",
-      "Chart.js",
-      "MySQL",
+      "D3.js",
+      "WebRTC",
+      "Redux",
+      "React Hook Form",
+      "Stripe",
       "Tailwind CSS",
     ],
     status: "Active",
-    liveUrl: "https://insightsjd.com/auth/signin/client",
+    liveUrl: "https://noustalkclinic.noustalk.com/",
   },
   {
     id: 2,
-    title: "LineLeader",
+    title: "EverBetter",
     subtitle:
-      "Architected report streaming pipeline, MongoDB aggregation optimization, and Agenda.js job queues for a childcare SaaS platform — eliminating server OOM crashes and improving report delivery for organizations with millions of records.",
-    date: "Mar 2025 - Present",
-    route: "/lineleader",
+      "Multi-tenant healthcare SaaS with 17 microservices, NATS JetStream messaging, Auth0 RBAC (13 roles), WebRTC video consultations, AWS Transcribe clinical documentation, and GCP/GKE deployment.",
+    date: "Dec 2023 - Present",
+    route: "/everbetter",
     technologies: [
-      "React",
+      "Next.js 15",
+      "React 19",
       "TypeScript",
-      "Next.js",
-      "MongoDB",
-      "AWS S3",
-      "AWS Lambda",
-      "Agenda.js",
       "Node.js",
+      "MongoDB",
+      "NATS JetStream",
+      "Auth0",
+      "Docker",
+      "GCP/GKE",
+      "Terraform",
     ],
     status: "Active",
-    liveUrl: "https://my.discoverchampions.momentpath.com/login/legacy",
+    liveUrl: "",
   },
   {
     id: 3,

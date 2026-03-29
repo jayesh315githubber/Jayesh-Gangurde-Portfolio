@@ -40,7 +40,7 @@ async function prerender() {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
 
-  const routes = ['/', '/marketjd', '/portfolio'];
+  const routes = ['/', '/everbetter', '/noustalk', '/portfolio'];
   
   for (const route of routes) {
     try {

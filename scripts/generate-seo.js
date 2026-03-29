@@ -35,7 +35,8 @@ const publicDir = path.resolve(__dirname, '../public');
 // Routes configuration
 const routes = [
   { path: '/', priority: 1.0, changefreq: 'weekly' },
-  { path: '/marketjd', priority: 0.8, changefreq: 'monthly' },
+  { path: '/everbetter', priority: 0.8, changefreq: 'monthly' },
+  { path: '/noustalk', priority: 0.8, changefreq: 'monthly' },
   { path: '/portfolio', priority: 0.8, changefreq: 'monthly' },
   { path: '/sitemap', priority: 0.6, changefreq: 'monthly' }
 ];

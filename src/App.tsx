@@ -23,8 +23,8 @@ const AIAssistant = lazy(() => import("./components/AIAssistant/AIAssistant"));
 const LightRays = lazy(() => import("./components/reactBits/lightRays"));
 
 // Lazy load route pages for code splitting
-const MarketJD = lazy(() => import("./pages/MarketJD"));
-const LineLeaderPage = lazy(() => import("./pages/LineLeader"));
+const EverBetter = lazy(() => import("./pages/EverBetter"));
+const NousTalk = lazy(() => import("./pages/NousTalk"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
 const LanyardPage = lazy(() => import("./pages/Lanyard"));
 const SiteArchitecture = lazy(() => import("./pages/SiteArchitecture"));
@@ -67,22 +67,22 @@ function App() {
         <GSAPPageIntro />
         <GSAPRouteTransition>
           <Routes>
-          {/* MarketJD Project Detail Page */}
+          {/* EverBetter Project Detail Page */}
           <Route
-            path="/marketjd"
+            path="/everbetter"
             element={
               <Suspense fallback={<PageLoader />}>
-                <PageWithLightRays><MarketJD /></PageWithLightRays>
+                <PageWithLightRays><EverBetter /></PageWithLightRays>
               </Suspense>
             }
           />
 
-          {/* LineLeader Project Detail Page */}
+          {/* NousTalk Project Detail Page */}
           <Route
-            path="/lineleader"
+            path="/noustalk"
             element={
               <Suspense fallback={<PageLoader />}>
-                <PageWithLightRays><LineLeaderPage /></PageWithLightRays>
+                <PageWithLightRays><NousTalk /></PageWithLightRays>
               </Suspense>
             }
           />
