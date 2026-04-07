@@ -184,8 +184,10 @@ const AIAssistantComponent = () => {
     const isMobile = window.innerWidth < 640; // sm breakpoint
     // Use visual viewport height for mobile to account for browser chrome
     const viewportHeight =
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       isMobile && (window as any).visualViewport
-        ? (window as any).visualViewport.height
+        ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (window as any).visualViewport.height
         : window.innerHeight;
     const widgetWidth = isMobile ? window.innerWidth - 16 : 384; // w-96 = 384px on desktop
     const widgetHeight = isMobile ? viewportHeight - 80 : 600; // Account for mobile browser UI

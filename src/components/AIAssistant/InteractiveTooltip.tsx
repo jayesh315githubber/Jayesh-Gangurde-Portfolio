@@ -41,7 +41,7 @@ export default function InteractiveTooltip({
           await new Promise((resolve) => setTimeout(resolve, 50));
           await playNotificationSound();
           hasPlayedSound.current = true;
-        } catch (error) {
+        } catch {
           // Retry after a short delay if first attempt fails
           setTimeout(async () => {
             try {

@@ -30,4 +30,4 @@ dist-ssr
 *.sw?
 *.cursor
 *.components
-*.mcp.json
+*.mcp.json.env
