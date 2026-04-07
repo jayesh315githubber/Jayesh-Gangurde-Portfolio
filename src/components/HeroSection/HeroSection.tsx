@@ -4,7 +4,7 @@ import { Button } from "../lightswind/button";
 import { FileText, Sparkles, Mail, Linkedin, Github } from "lucide-react";
 import { CircularStatusText } from "./CircularStatusText";
 
-const RESUME_FILE_PATH = "/Jayesh_Gangurde.pdf";
+const RESUME_FILE_PATH = "/Jayesh__Gangurde_Resume.pdf";
 
 const HeroSectionComponent = () => {
   const [hasHoveredEmail, setHasHoveredEmail] = useState(false);
@@ -1191,7 +1191,7 @@ const HeroSectionComponent = () => {
             className="w-[200px] h-[200px] sm:w-[216px] sm:h-[216px] md:w-[232px] md:h-[232px] rounded-full overflow-hidden shadow-lg"
           >
             <img
-              src="/Jayesh_Gangurde.webp"
+              src="/Jayesh_Gangurde_img.png"
               alt="Jayesh Gangurde"
               className="w-full h-full object-cover"
               loading="eager"
