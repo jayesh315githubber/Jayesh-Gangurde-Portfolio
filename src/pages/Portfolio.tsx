@@ -1,6 +1,7 @@
 import { useEffect, useMemo, lazy, Suspense, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/store/hooks";
+import { profileConfig } from "@/lib/profileConfig";
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import { useGSAPRouteAnimation } from "@/hooks/useGSAPRouteAnimation";
 import { useGSAPScrollRestoration } from "@/hooks/useGSAPScrollRestoration";
@@ -717,7 +718,7 @@ const Portfolio = () => {
           </button>
           <div className="flex items-center gap-3">
             <a
-              href="https://jayesh-gangurde-portfolio.vercel.app/"
+              href={`${profileConfig.baseUrl}/`}
               target="_blank"
               rel="noopener noreferrer"
               className="group/live inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-full bg-emerald-500/90 text-white hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-105 transition-all duration-300 cursor-pointer backdrop-blur-md"
@@ -771,7 +772,7 @@ const Portfolio = () => {
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
                 <a
-                  href="https://jayesh-gangurde-portfolio.vercel.app/"
+                  href={`${profileConfig.baseUrl}/`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group/badge hero-badge"
@@ -946,7 +947,7 @@ const Portfolio = () => {
                     Status
                   </h3>
                   <a
-                    href="https://jayesh-gangurde-portfolio.vercel.app/"
+                    href={`${profileConfig.baseUrl}/`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group/status inline-block mb-3"

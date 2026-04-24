@@ -18,9 +18,9 @@ export function seoPlugin(options: SEOPluginOptions = {}): Plugin {
     } else if (process.env.VERCEL_URL) {
       url = `https://${process.env.VERCEL_URL}`;
     } else if (process.env.NETLIFY) {
-      url = process.env.URL || (process.env.DEPLOY_PRIME_URL ? `https://${process.env.DEPLOY_PRIME_URL}` : 'https://jayesh-gangurde-portfolio.vercel.app');
+      url = process.env.URL || (process.env.DEPLOY_PRIME_URL ? `https://${process.env.DEPLOY_PRIME_URL}` : 'https://jayesh-gangurde.vercel.app');
     } else {
-      url = 'https://jayesh-gangurde-portfolio.vercel.app';
+      url = 'https://jayesh-gangurde.vercel.app';
     }
     // Remove trailing slash to prevent double slashes
     return url.replace(/\/+$/, '');
@@ -113,7 +113,23 @@ ${routes.map((route) => {
           'utf-8'
         );
 
-        console.log(`\n✅ SEO Plugin: Generated robots.txt and sitemap.xml`);
+        // Generate sitemap.txt (plain-text alternative for crawlers that prefer it)
+        const sitemapTxtContent = `# Sitemap for Jayesh Gangurde Portfolio Website
+# Last Updated: ${currentDate}
+
+${routes.map((route) => {
+  const routePath = route.path === '/' ? '' : route.path;
+  return `${baseUrl}${routePath}`;
+}).join('\n')}
+`;
+
+        fs.writeFileSync(
+          path.join(publicDir, 'sitemap.txt'),
+          sitemapTxtContent,
+          'utf-8'
+        );
+
+        console.log(`\n✅ SEO Plugin: Generated robots.txt, sitemap.xml, and sitemap.txt`);
         console.log(`   Base URL: ${baseUrl}`);
         console.log(`   Routes: ${routes.length}\n`);
       } catch (error) {

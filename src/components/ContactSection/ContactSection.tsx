@@ -11,6 +11,7 @@ import { Button } from "../lightswind/button";
 import { Mail, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import type { ConfettiOptions } from "../lightswind/confetti-button";
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
+import { profileConfig } from "@/lib/profileConfig";
 
 // Global declaration for confetti
 declare global {
@@ -223,7 +224,7 @@ const ContactSectionComponent = () => {
           subject: formData.subject,
           message: formData.message,
           time: formattedTime,
-          to_email: "jayeshgangurde315@gmail.com",
+          to_email: profileConfig.contactEmail,
         };
 
         // Send email using EmailJS
@@ -248,7 +249,7 @@ const ContactSectionComponent = () => {
           type: "error",
           message:
             error.text ||
-            "Failed to send message. Please try again or contact me directly at jayeshgangurde315@gmail.com",
+            `Failed to send message. Please try again or contact me directly at ${profileConfig.contactEmail}`,
         });
       } finally {
         setIsSubmitting(false);

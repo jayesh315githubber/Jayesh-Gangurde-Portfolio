@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath } from "url";
 import { vitePluginErrorOverlay } from "@hiogawa/vite-plugin-error-overlay";
 import { seoPlugin } from "./vite-plugin-seo";
+import { htmlEnvPlugin } from "./vite-plugin-html-env";
 import babel from "vite-plugin-babel";
 import { compression } from "vite-plugin-compression2";
 
@@ -21,7 +22,7 @@ const getBaseUrl = () => {
   } else if (process.env.NETLIFY) {
     url = process.env.URL || `https://${process.env.DEPLOY_PRIME_URL}`;
   } else {
-    url = "https://jayesh-gangurde-portfolio.vercel.app";
+    url = "https://jayesh-gangurde.vercel.app";
   }
   // Remove trailing slash to prevent double slashes
   return url.replace(/\/+$/, "");
@@ -79,6 +80,7 @@ export default defineConfig(({ mode }) => ({
         { path: "/portfolio", priority: 0.8, changefreq: "monthly" },
       ],
     }),
+    htmlEnvPlugin(),
     // Pre-compress assets with gzip and brotli for faster delivery
     mode === "production"
       ? compression({

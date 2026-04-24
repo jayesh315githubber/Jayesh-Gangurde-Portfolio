@@ -7,6 +7,8 @@
  * Update this file with your actual information and the AI will use it to respond accurately.
  */
 
+import { profileConfig } from "@/lib/profileConfig";
+
 export interface PortfolioData {
   personalInfo: {
     name: string;
@@ -76,7 +78,7 @@ export const portfolioData: PortfolioData = {
     pronouns: "He/him",
     title: "Full Stack Developer",
     bio: "Full Stack Developer with 2+ years of experience at Thinkitive Technology, building multi-tenant healthcare SaaS applications using Next.js 15, React 19, Node.js, and TypeScript. Built 110+ API proxy routes and integrated real-time features using Centrifugo WebSocket. Contributed to a Node.js/Express microservices backend with 17 services communicating via NATS message broker, backed by MongoDB and Redis. Integrated 15+ third-party services including Stripe, OpenAI, AWS Transcribe, and more. Experienced with WebRTC, D3.js, Auth0, and Agile/Scrum methodologies.",
-    email: "jayeshgangurde315@gmail.com",
+    email: profileConfig.contactEmail,
     location: "Pune, India",
     // website: "https://yourwebsite.com",
     // linkedin: "https://linkedin.com/in/yourprofile",

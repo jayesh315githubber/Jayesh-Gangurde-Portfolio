@@ -1,6 +1,6 @@
 # robots.txt
-# Auto-generated at build time for https://jayesh-gangurde-portfolio.vercel.app
-# Last updated: 2026-04-07
+# Auto-generated at build time for https://jayesh-gangurde.vercel.app
+# Last updated: 2026-04-24
 
 # Allow all search engines
 User-agent: *
@@ -11,7 +11,7 @@ Allow: /
 # Disallow: /api/
 
 # Sitemap location
-Sitemap: https://jayesh-gangurde-portfolio.vercel.app/sitemap.xml
+Sitemap: https://jayesh-gangurde.vercel.app/sitemap.xml
 
 # Crawl delay (be respectful to server resources)
 Crawl-delay: 1

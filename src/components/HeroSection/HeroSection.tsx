@@ -3,8 +3,9 @@ import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import { Button } from "../lightswind/button";
 import { FileText, Sparkles, Mail, Linkedin, Github } from "lucide-react";
 import { CircularStatusText } from "./CircularStatusText";
+import { profileConfig } from "@/lib/profileConfig";
 
-const RESUME_FILE_PATH = "/Jayesh__Gangurde_Resume.pdf";
+const RESUME_FILE_PATH = profileConfig.resumeFile;
 
 const HeroSectionComponent = () => {
   const [hasHoveredEmail, setHasHoveredEmail] = useState(false);
@@ -1102,7 +1103,7 @@ const HeroSectionComponent = () => {
         {/* Email Contact */}
         <div ref={emailRef} className="flex items-center gap-2 mt-4 relative">
           <a
-            href="mailto:jayeshgangurde315@gmail.com"
+            href={`mailto:${profileConfig.contactEmail}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-pink-500 transition-colors duration-300 group relative"
@@ -1111,7 +1112,7 @@ const HeroSectionComponent = () => {
           >
             <Mail className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
             <span className="font-medium relative">
-              jayeshgangurde315@gmail.com
+              {profileConfig.contactEmail}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300 group-hover:w-full"></span>
             </span>
             {/* Tooltip */}

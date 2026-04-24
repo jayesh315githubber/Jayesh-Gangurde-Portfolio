@@ -4,6 +4,8 @@
  * Also generates lanyard ribbon texture with repeating favicon pattern
  */
 
+import { profileConfig } from "@/lib/profileConfig";
+
 /**
  * Loads an image from URL and returns a Promise that resolves with the Image element
  */
@@ -126,9 +128,9 @@ export async function generateIDCardCanvas(options: IDCardOptions = {}): Promise
     title = 'Software Engineer',
     contact = {
       phone: '+91 95275 57455',
-      email: 'jayeshgangurde315@gmail.com',
+      email: profileConfig.contactEmail,
       linkedin: 'linkedin.com/in/jayesh-gangurde-04a34819b',
-      portfolio: 'jayesh-gangurde-portfolio.vercel.app'
+      portfolio: profileConfig.baseUrl.replace(/^https?:\/\//, '')
     }
   } = options;
 

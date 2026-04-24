@@ -46,7 +46,7 @@ NODE_OPTIONS=--max-old-space-size=4096
 - **Variable:** `VITE_BASE_URL`
 - **Purpose:** Used for SEO sitemap and robots.txt generation
 - **Default:** Auto-detected from Vercel/Netlify or defaults to production URL
-- **Example:** `https://jayesh-gangurde-portfolio.vercel.app/`
+- **Example:** `https://jayesh-gangurde.vercel.app/` (Portfolio 1) or `https://jayesh-gangurde-dev.vercel.app/` (Portfolio 2)
 
 ## Performance Optimization Variables
 

@@ -18,6 +18,7 @@ import {
   type RigidBodyProps,
 } from "@react-three/rapier";
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
+import { profileConfig } from "@/lib/profileConfig";
 import * as THREE from "three";
 
 // replace with your own imports, see the usage snippet for details
@@ -616,7 +617,7 @@ function createIDCardTexture(
 
   const contactInfo = [
     "+91 95275 57455",
-    "jayeshgangurde315@gmail.com",
+    profileConfig.contactEmail,
     "linkedin.com/in/jayesh-gangurde",
     "github.com/jayesh-gangurde",
   ];

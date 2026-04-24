@@ -20,9 +20,9 @@ const getBaseUrl = () => {
   } else if (process.env.VERCEL_URL) {
     url = `https://${process.env.VERCEL_URL}`;
   } else if (process.env.NETLIFY) {
-    url = process.env.URL || (process.env.DEPLOY_PRIME_URL ? `https://${process.env.DEPLOY_PRIME_URL}` : 'https://jayesh-gangurde-portfolio.vercel.app');
+    url = process.env.URL || (process.env.DEPLOY_PRIME_URL ? `https://${process.env.DEPLOY_PRIME_URL}` : 'https://jayesh-gangurde.vercel.app');
   } else {
-    url = 'https://jayesh-gangurde-portfolio.vercel.app';
+    url = 'https://jayesh-gangurde.vercel.app';
   }
   // Remove trailing slash to prevent double slashes
   return url.replace(/\/+$/, '');

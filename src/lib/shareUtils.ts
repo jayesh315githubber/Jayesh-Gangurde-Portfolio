@@ -5,6 +5,8 @@
  * across different social platforms.
  */
 
+import { profileConfig } from "@/lib/profileConfig";
+
 export interface ShareData {
   title: string;
   description: string;
@@ -24,8 +26,7 @@ export const getCurrentUrl = (): string => {
  * Get the base URL of the site
  */
 export const getBaseUrl = (): string => {
-  if (typeof window === "undefined")
-    return "https://jayesh-gangurde-portfolio.vercel.app";
+  if (typeof window === "undefined") return profileConfig.baseUrl;
   return `${window.location.protocol}//${window.location.host}`;
 };
 

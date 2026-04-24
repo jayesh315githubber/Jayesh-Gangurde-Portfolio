@@ -13,6 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useIsMobile } from "../hooks/use-mobile";
+import { profileConfig } from "@/lib/profileConfig";
 import { gsap, SplitText, useGSAP, ScrollTrigger } from "@/lib/gsap";
 
 // Lazy load LightRays for performance
@@ -103,7 +104,7 @@ const PROJECTS_DATA = [
     technologies: ["React", "TypeScript", "Framer Motion", "Vite"],
     status: "Active",
     badge: "Personal Project",
-    liveUrl: "https://jayesh-gangurde-portfolio.vercel.app/",
+    liveUrl: `${profileConfig.baseUrl}/`,
   },
 ] as const;
 
